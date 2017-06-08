@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class TaskController {
     @RequestMapping("/task")
     
-    public String page(){
-        return "html/offer";
+    public String get(){
+        return "hello! a task";
     }
 }

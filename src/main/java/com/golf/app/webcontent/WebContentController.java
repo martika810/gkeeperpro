@@ -11,9 +11,6 @@ public class WebContentController {
         return "html/homepage";
     }
     
-    @RequestMapping("/ini2")
-    public String page2(){
-        return "html/homepage";
-    }
+   
     
 }

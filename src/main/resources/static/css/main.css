@@ -1,3 +1,18 @@
-.collection-item{
-	background-color:#ff00ff;
+.tab{
+	width:33.3% !important;;
+	border-style: solid  !important;
+	border-width: 1px  !important;
+	border-color: rgba(68, 68, 68, 0.8) !important;
+}
+
+nav{
+	background-color:gainsboro;
+}
+
+.brand-logo, #nav-mobile a,.tabs a{
+	color:rgba(68, 68, 68, 0.8) !important;
+}
+
+.chip{
+	margin:20px;
 }

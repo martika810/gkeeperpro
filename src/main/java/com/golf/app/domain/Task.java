@@ -2,85 +2,71 @@ package com.golf.app.domain;
 
 import java.util.UUID;
 
-import com.golf.app.domain.api.TaskMutable;
-
 public final class Task {
 	private final String id;
+	private final String title;
 	private final String description;
 	private final String personAssigned;
 	
-	public static Task of(final String description){
-		return new Task(UUID.randomUUID().toString(),description, "UnAssigned");
+	public static Task of(final String title, final String description){
+		return new Task(UUID.randomUUID().toString(),title,description, "UnAssigned");
 	}
 	
-	public static Task of(final String description, final String person){
-		return new Task(UUID.randomUUID().toString(),description,person);
+	public static Task of(final String title,final String description, final String person){
+		return new Task(UUID.randomUUID().toString(),title,description,person);
+	}
+
+	static Task of(final String id, final String title,final String description, final String person){
+		return new Task(id,title,description,person);
 	}
 	
-	public TaskMutable toMutable(){
-		return new TaskMutable(this.id(),this.description(),this.personAssigned());
+	public TaskMutable mutable(){
+		return new TaskMutable(this.id(),this.title(),this.description(),this.personAssigned());
 	}
 	
-	private Task(final String id, final String description, final String personAssigned){
+	private Task(final String id, final String title,final String description, final String personAssigned){
 		this.id=id;
+		this.title = title;
 		this.description = description;
 		this.personAssigned = personAssigned;
 	}
 	
 	public String id(){return id;}
+	public String title(){return title;}
 	public String description(){return description;}
 	public String personAssigned(){return personAssigned;}
+
+	public Task withTitle(final String title){ return new Task(this.id,title,this.description,this.personAssigned);}
 	
 	public Task withDescription(final String description){
-		return new Task(this.id,description,this.personAssigned);
+		return new Task(this.id,this.title,description,this.personAssigned);
 	}
 	
 	public Task withPersonAssigned(final String person){
-		return new Task(this.id,this.description,person);
+		return new Task(this.id,this.title,this.description,person);
+	}
+
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		Task task = (Task) o;
+
+		if (!id.equals(task.id)) return false;
+		if (!title.equals(task.title)) return false;
+		if (description != null ? !description.equals(task.description) : task.description != null) return false;
+		return personAssigned.equals(task.personAssigned);
+
 	}
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result
-				+ ((description == null) ? 0 : description.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result
-				+ ((personAssigned == null) ? 0 : personAssigned.hashCode());
+		int result = id.hashCode();
+		result = 31 * result + title.hashCode();
+		result = 31 * result + (description != null ? description.hashCode() : 0);
+		result = 31 * result + personAssigned.hashCode();
 		return result;
 	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Task other = (Task) obj;
-		if (description == null) {
-			if (other.description != null)
-				return false;
-		} else if (!description.equals(other.description))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (personAssigned == null) {
-			if (other.personAssigned != null)
-				return false;
-		} else if (!personAssigned.equals(other.personAssigned))
-			return false;
-		return true;
-	}
-	
-	
-	
-	
-	
-
 }

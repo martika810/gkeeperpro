@@ -2,10 +2,16 @@
 <html lang="en" xmlns:th="http://www.springframework.org/schema/mvc">
 <head>
     <title>Page</title>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css"></link>
     <link rel="stylesheet" th:href="@{/css/main.css}" ></link>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"></link>
+    <!-- Javascript -->
+    <script tytpe="text/javascript" th:src="@{/js/lib/jquery.js}" />
     <script type="text/javascript" th:src="@{/js/lib/angular.js}" />
-    <script type="text/javascript" th:src="@{/js/src/task-controller.js}" />    
+    <script type="text/javascript" th:src="@{/js/lib/materialize.js}" />
+
+    <script type="text/javascript" th:src="@{/js/src/task-controller.js}" />
 </head>
 <body>
 	<nav class="nav-extended">
@@ -36,19 +42,18 @@
   	</div>
   	 <div class="chip">
      	<img src="img/blocked.png" alt="Bloqueada"/>
-    	 Bloqueada
+    	 Bloqueada1
   	</div>
   </div>
- 
-	<div ng-app="taskApp" ng-controller="taskController">
-		<p> Lista de tareas</p>
-		<ul ng-repeat="task in taskList" class="collection">
-			<li class="collection-item">{{task.id + " - " + task.description +" - "+task.personAssigned}}</li>
+  <div ng-app="taskApp" ng-controller="taskController">
+
+		<ul ng-repeat="task in taskList" class="collapsible" data-collapsible="accordion">
+			<li class="collection-item">
+                <div class="collapsible-header"><i class="material-icons">place</i>{{task.title}}</div>
+                <div class="collapsible-body"><span>{{task.description}}</span></div>
+            </li>
 		</ul>
-		
-		
-		
-	</div>
+  </div>
 </body>
 
 </html>

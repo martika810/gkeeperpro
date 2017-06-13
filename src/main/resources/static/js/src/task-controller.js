@@ -6,5 +6,13 @@ taskApp.controller('taskController',function($scope,$http){
 			.then(function(response){
 				$scope.taskList = response.data
 			});
-	
+
+	//$(document).ready(function(){
+        $('.collapsible').collapsible();
+        // Open
+        $('.collapsible').collapsible('open', 0);
+
+        // Close
+        $('.collapsible').collapsible('close', 0);
+      //});
 });

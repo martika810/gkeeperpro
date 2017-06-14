@@ -1,8 +1,9 @@
 .tab{
-	width:33.3% !important;;
-	border-style: solid  !important;
-	border-width: 1px  !important;
-	border-color: rgba(68, 68, 68, 0.8) !important;
+	width:33.3% !important;
+}
+
+.tab .active{
+	background-color: white !important;
 }
 
 nav{

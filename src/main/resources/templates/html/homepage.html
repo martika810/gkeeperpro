@@ -16,7 +16,7 @@
 <body>
 	<nav class="nav-extended">
     <div class="nav-wrapper">
-      <a href="#" class="brand-logo">Logo</a>
+      <a href="#" class="brand-logo">Campo de Golf</a>
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a href="sass.html">Configuracion</a></li>
@@ -34,18 +34,18 @@
       </ul>
     </div>
   </nav>
-  
-  <div class="action-panel">
-  	 <div class="chip">
-     	<img src="img/in_progress.png" alt="En Proceso"/>
-    	 En Proceso
+  <div class="container">
+ 	 <div class="action-panel">
+  		 <div class="chip">
+     		<img src="img/in_progress.png" alt="En Proceso"/>
+    	 	En Proceso
+  		</div>
+  	 	<div class="chip">
+     		<img src="img/blocked.png" alt="Bloqueada"/>
+    	 	Bloqueada1
+  		</div>
   	</div>
-  	 <div class="chip">
-     	<img src="img/blocked.png" alt="Bloqueada"/>
-    	 Bloqueada1
-  	</div>
-  </div>
-  <div ng-app="taskApp" ng-controller="taskController">
+  	<div ng-app="taskApp" ng-controller="taskController">
 
 		<ul ng-repeat="task in taskList" class="collapsible" data-collapsible="accordion">
 			<li class="collection-item">
@@ -53,7 +53,8 @@
                 <div class="collapsible-body"><span>{{task.description}}</span></div>
             </li>
 		</ul>
-  </div>
+  	</div>
+  </div>	
 </body>
 
 </html>

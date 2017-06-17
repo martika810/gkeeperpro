@@ -1,4 +1,4 @@
-console.log("Hello offer");
+console.log("Hello task-controller");
 var taskApp = angular.module('taskApp',[]);
 taskApp.controller('taskController',function($scope,$http){
 	
@@ -15,4 +15,9 @@ taskApp.controller('taskController',function($scope,$http){
 				}, true);
 			});
 		
+});
+
+
+angular.element(document).ready(function() {
+	angular.bootstrap(document.getElementById("taskPanel"), ['taskApp']);
 });

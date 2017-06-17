@@ -12,6 +12,7 @@
     <script type="text/javascript" th:src="@{/js/lib/materialize.js}" />
 
     <script type="text/javascript" th:src="@{/js/src/task-controller.js}" />
+   	<script type="text/javascript" th:src="@{/js/src/tab-controller.js}" />
 </head>
 <body>
 	<nav class="nav-extended">
@@ -27,15 +28,16 @@
        
       </ul>
     </div>
-    <div class="nav-content">
+    <!--    -->
+    <div id="tabPanel" class="nav-content" ng-app="tabApp" ng-controller="navTabController">
       <ul class="tabs tabs-transparent">
-        <li class="tab"><a href="#test1">Tareas</a></li>
-        <li class="tab"><a class="active" href="#test2">Empleados</a></li>
-        <li class="tab"><a href="#test4">Herramientas</a></li>
+        <li class="tab"><a ng-click="changeTab($event,'taskPanel')" class="active">Tareas</a></li>
+        <li class="tab"><a ng-click="changeTab($event,'employeePanel')">Empleados</a></li>
+        <li class="tab"><a ng-click="changeTab($event,'toolPanel')">Herramientas</a></li>
       </ul>
     </div>
   </nav>
-  <div class="container"  ng-app="taskApp" ng-controller="taskController">
+  <div id="taskPanel" class="container"  ng-app="taskApp" ng-controller="taskController">
  	 <div class="action-panel">
   		 <div class="chip">
      		<img src="img/in_progress.png" alt="En Proceso"/>
@@ -55,6 +57,12 @@
 		</ul>
   	</div>
   </div>	
+  <div id="employeePanel" class="container hide" >
+  	<h1>Employees</h1>
+  </div>	
+  <div id="toolPanel" class="container hide">
+  	<h1>Herramientas</h1>
+  </div>  	
 </body>
 
 </html>

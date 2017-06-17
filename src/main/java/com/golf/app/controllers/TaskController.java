@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 
 @Controller
-@RequestMapping("/task")
+@RequestMapping("/task")//cuando recibe peticiones que contengan "task" en la url, debe responder con este metodo
 public class TaskController implements com.golf.app.controllers.Controller<TaskMutable>{
 	
 	private TaskRepository repository;

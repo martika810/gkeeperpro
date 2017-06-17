@@ -9,4 +9,5 @@ public interface Controller<TYPE>{
 	ResponseEntity<TYPE> update(TYPE obj);
 	ResponseEntity<TYPE> delete(String id);
 	ResponseEntity<TYPE> create(TYPE obj);
+	
 }

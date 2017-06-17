@@ -61,7 +61,7 @@ public final class Task {
 
 	}
 
-	@Override
+	@Override			//mejora la eficiencia de los maps
 	public int hashCode() {
 		int result = id.hashCode();
 		result = 31 * result + title.hashCode();

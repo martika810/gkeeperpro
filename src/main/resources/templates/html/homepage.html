@@ -11,6 +11,7 @@
     <script type="text/javascript" th:src="@{/js/lib/angular.js}" />
     <script type="text/javascript" th:src="@{/js/lib/materialize.js}" />
 
+	 <script type="text/javascript" th:src="@{/js/src/employee-controller.js}" />
     <script type="text/javascript" th:src="@{/js/src/task-controller.js}" />
    	<script type="text/javascript" th:src="@{/js/src/tab-controller.js}" />
 </head>
@@ -38,6 +39,8 @@
     </div>
   </nav>
   <div id="taskPanel" class="container"  ng-app="taskApp" ng-controller="taskController">
+  
+  
  	 <div class="action-panel">
   		 <div class="chip">
      		<img src="img/in_progress.png" alt="En Proceso"/>
@@ -57,8 +60,25 @@
 		</ul>
   	</div>
   </div>	
-  <div id="employeePanel" class="container hide" >
-  	<h1>Employees</h1>
+  <div id="employeePanel" class="container hide" ng-app="employeeApp" ng-controller="employeeController">
+  	 <div class="action-panel">
+  		 <div class="chip">
+     		<img src="img/in_progress.png" alt="En Proceso"/>
+    	 	En Proceso
+  		</div>
+  	 	<div class="chip">
+     		<img src="img/blocked.png" alt="Bloqueada"/>
+    	 	Bloqueada1
+  		</div>
+  	</div>
+  	<div>
+		<ul ng-repeat="employee in employeeList" class="collapsible" data-collapsible="accordion">
+			<li class="collection-item">
+                <div class="collapsible-header"><i class="material-icons">place</i>{{employee.nombre}}</div>
+                <div class="collapsible-body"><span>{{employee.apellido1}}</span></div>
+            </li>
+		</ul>
+  	</div>
   </div>	
   <div id="toolPanel" class="container hide">
   	<h1>Herramientas</h1>

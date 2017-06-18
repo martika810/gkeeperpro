@@ -34,8 +34,8 @@ public class EmployeeController implements com.golf.app.controllers.Controller<E
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<EmployeeMutable>> getAll() {
 		List<Employee> employees = new ArrayList<>();
-		employees.add(Employee.of("Juan","Ortega","Perez","imagen","Jardinero"));
-		employees.add(Employee.of("Pedro","Ortega","Perez","imagen","Corta Arboles"));
+		employees.add(Employee.of("Juan","Ruiz","Perez","imagen","Jardinero"));
+		employees.add(Employee.of("Pedro","Ortega","Lopez","imagen","Corta Arboles"));
 		repository.update(employees);
 		
 		List<EmployeeMutable> employeeReponse =convertToApi(employees);

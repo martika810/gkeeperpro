@@ -34,6 +34,7 @@ public class EmployeeController implements com.golf.app.controllers.Controller<E
 		List<Employee> employees = repository.readAll();
 		List<EmployeeMutable> employeeReponse = convertToApi(employees);
 		return ResponseEntity.status(HttpStatus.OK).body(employeeReponse);
+
 	}
 
 	@Override

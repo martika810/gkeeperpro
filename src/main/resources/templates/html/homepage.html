@@ -55,8 +55,43 @@
   	<div>
 		<ul ng-repeat="task in taskList" class="collapsible" data-collapsible="accordion">
 			<li class="collection-item">
-                <div class="collapsible-header"><i class="material-icons">place</i>{{task.title}}</div>
-                <div class="collapsible-body"><span>{{task.description}}</span></div>
+                <div id="task_id" class="collapsible-header" value="{{task.id}}"><i class="material-icons">place</i>{{task.title}}</div>
+                <div class="collapsible-body">
+                	<form class="col s11">
+                       <div class="row">
+                           <div class="input-field col s9">
+                               <input id="task_title" type="text" class="validate" value="{{task.title}}"></input>
+                               <label for="task_title"></label>
+                            </div>
+                            <div class="input-field cols s3">
+                                <a class="waves-effect waves-light btn green" ng-click="save()"><i class="material-icons left">done</i>Hecho</a>
+                            </div>
+                       </div>
+                       <div class="row">
+                            <div class="input-field col s4">
+                               <select id="task_employee" ng-model="task.personAssignedId" class="browser-default">
+                                    <option value="" class="disabled selected">Asignar</option>
+                                    <option ng-repeat="employee in employeeList" value="{{employee.id}}">{{employee.nombre}}</option>
+                                    
+                                </select>
+                            </div>
+                            <div class="input-field col s4">
+                               <select id="task_tool" class="browser-default">
+                                    <option value="" class="disabled selected">Herramienta</option>
+                                    <option value="1">Ninguna</option>
+                                    
+                                </select>
+                            </div>
+                       </div> 
+     				   <div class="row">
+                            <div class="input-field col s11">
+                                <textarea id="task_description" class="materialize-textarea">{{task.description}}</textarea>
+                                <label for="textarea1"></label>
+                            </div>
+                       </div>
+                    </form>
+            	
+                </div>
             </li>
 		</ul>
   	</div>

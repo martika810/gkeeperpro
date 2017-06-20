@@ -5,24 +5,25 @@ public class TaskMutable {
 	private String id;
 	private String title;
 	private String description;
-	private String personAssigned;
+	private String personAssignedId;
 
-	public  TaskMutable(final String id, final String title, final String description, final String personAssigned){
-		this.id=id;
+	public TaskMutable() {
+	}
+
+	public TaskMutable(String id, String title, String description, String personAssignedId) {
+		this.id = id;
 		this.title = title;
 		this.description = description;
-		this.personAssigned = personAssigned;
+		this.personAssignedId = personAssignedId;
 	}
-	
-	public Task inmutable(){
-		return Task.of(this.getId(),this.getTitle(),this.getDescription(),this.getPersonAssigned());
+
+	public Task inmutable() {
+		return Task.of(this.getId(), this.getTitle(), this.getDescription(), this.getPersonAssignedId());
 	}
 
 	public String getId() {
 		return id;
 	}
-
-
 
 	public void setId(String id) {
 		this.id = id;
@@ -40,35 +41,34 @@ public class TaskMutable {
 		return description;
 	}
 
-
-
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
-
-
-	public String getPersonAssigned() {
-		return personAssigned;
+	public String getPersonAssignedId() {
+		return personAssignedId;
 	}
 
-
-
-	public void setPersonAssigned(String personAssigned) {
-		this.personAssigned = personAssigned;
+	public void setPersonAssignedId(String personAssignedId) {
+		this.personAssignedId = personAssignedId;
 	}
 
 	@Override
 	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
 
 		TaskMutable that = (TaskMutable) o;
 
-		if (!id.equals(that.id)) return false;
-		if (!title.equals(that.title)) return false;
-		if (description != null ? !description.equals(that.description) : that.description != null) return false;
-		return personAssigned.equals(that.personAssigned);
+		if (!id.equals(that.id))
+			return false;
+		if (!title.equals(that.title))
+			return false;
+		if (description != null ? !description.equals(that.description) : that.description != null)
+			return false;
+		return personAssignedId.equals(that.personAssignedId);
 
 	}
 
@@ -77,7 +77,7 @@ public class TaskMutable {
 		int result = id.hashCode();
 		result = 31 * result + title.hashCode();
 		result = 31 * result + (description != null ? description.hashCode() : 0);
-		result = 31 * result + personAssigned.hashCode();
+		result = 31 * result + personAssignedId.hashCode();
 		return result;
 	}
 }

@@ -1,6 +1,5 @@
 package com.golf.app.controllers;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,33 +12,29 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.golf.app.domain.Employee;
 import com.golf.app.domain.EmployeeMutable;
-import com.golf.app.domain.Task;
-import com.golf.app.domain.TaskMutable;
 import com.golf.app.repositories.EmployeeRepository;
-import com.golf.app.repositories.TaskRepository;
 
 @Controller
 @RequestMapping("/employee")
 public class EmployeeController implements com.golf.app.controllers.Controller<EmployeeMutable> {
-	
+
 	private EmployeeRepository repository;
-	
-	@Autowired//cuando spring vaya a crear este objeto, va a buscar si tiene un objeto employeerepository, si no lo encuentra, falla.
-	public EmployeeController(EmployeeRepository repository){
-		
+
+	@Autowired
+	// cuando spring vaya a crear este objeto, va a buscar si tiene un objeto
+	// employeerepository, si no lo encuentra, falla.
+	public EmployeeController(EmployeeRepository repository) {
+
 		this.repository = repository;
 	}
-	
 
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<EmployeeMutable>> getAll() {
-		List<Employee> employees = new ArrayList<>();
-		employees.add(Employee.of("Juan","Ruiz","Perez","imagen","Jardinero"));
-		employees.add(Employee.of("Pedro","Ortega","Lopez","imagen","Corta Arboles"));
-		repository.update(employees);
-		
-		List<EmployeeMutable> employeeReponse =convertToApi(employees);
-        return ResponseEntity.status(HttpStatus.OK).body(employeeReponse);
+
+		List<Employee> employees = repository.readAll();
+		List<EmployeeMutable> employeeReponse = convertToApi(employees);
+		return ResponseEntity.status(HttpStatus.OK).body(employeeReponse);
+
 	}
 
 	@Override
@@ -59,12 +54,12 @@ public class EmployeeController implements com.golf.app.controllers.Controller<E
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	private EmployeeMutable convertToApi(final Employee employee){
+
+	private EmployeeMutable convertToApi(final Employee employee) {
 		return employee.mutable();
 	}
-	
-	private List<EmployeeMutable> convertToApi(final List<Employee> employeeList){
-		return employeeList.stream().map(t ->this.convertToApi(t)).collect(Collectors.toList());
+
+	private List<EmployeeMutable> convertToApi(final List<Employee> employeeList) {
+		return employeeList.stream().map(t -> this.convertToApi(t)).collect(Collectors.toList());
 	}
 }

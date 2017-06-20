@@ -2,16 +2,19 @@ package com.golf.app.domain;
 
 import java.util.UUID;
 
-public final class Employee {
+public final class Employee extends BaseObject<EmployeeMutable, String> {
+
+	public final static String EMPTY = "UNASSIGNED";;
+
 	private final String id;
 	private final String nombre;
 	private final String apellido1;
 	private final String apellido2;
 	private final String imagen;
 	private final String posicion;
-	
+
 	private Employee(String id, String nombre, String apellido1, String apellido2, String imagen, String posicion) {
-		
+
 		this.id = id;
 		this.nombre = nombre;
 		this.apellido1 = apellido1;
@@ -19,17 +22,19 @@ public final class Employee {
 		this.imagen = imagen;
 		this.posicion = posicion;
 	}
-	public static Employee of(final String nombre, final String apellido1,final String apellido2,final String imagen,final String posicion){
-		return new Employee(UUID.randomUUID().toString(),nombre,apellido1,apellido2,imagen,posicion);
+
+	public static Employee of(final String nombre, final String apellido1, final String apellido2, final String imagen, final String posicion) {
+		return new Employee(UUID.randomUUID().toString(), nombre, apellido1, apellido2, imagen, posicion);
 	}
-	
-	protected static Employee of(final String id,final String nombre, final String apellido1,final String apellido2,final String imagen,final String posicion){
-		return new Employee(id,nombre,apellido1,apellido2,imagen,posicion);
+
+	protected static Employee of(final String id, final String nombre, final String apellido1, final String apellido2, final String imagen,
+			final String posicion) {
+		return new Employee(id, nombre, apellido1, apellido2, imagen, posicion);
 	}
-	
-	//para que se pueda convertir de normal a mutable
-	public EmployeeMutable mutable(){
-		return new EmployeeMutable(this.getId(),this.getNombre(),this.getApellido1(),this.getApellido2(),this.getImagen(),this.getPosicion());
+
+	// para que se pueda convertir de normal a mutable
+	public EmployeeMutable mutable() {
+		return new EmployeeMutable(this.getId(), this.getNombre(), this.getApellido1(), this.getApellido2(), this.getImagen(), this.getPosicion());
 	}
 
 	public String getId() {
@@ -55,22 +60,22 @@ public final class Employee {
 	public String getPosicion() {
 		return posicion;
 	}
-	
-	public Employee setNombre( final String nombre){
-		return new Employee (this.id,nombre,this.apellido1,this.apellido2,this.imagen,this.posicion);
+
+	public Employee setNombre(final String nombre) {
+		return new Employee(this.id, nombre, this.apellido1, this.apellido2, this.imagen, this.posicion);
 	}
-	
-	public Employee setApellido1( final String apellido1){
-		return new Employee (this.id,this.nombre,apellido1,this.apellido2,this.imagen,this.posicion);
+
+	public Employee setApellido1(final String apellido1) {
+		return new Employee(this.id, this.nombre, apellido1, this.apellido2, this.imagen, this.posicion);
 	}
-	public Employee setApellido2( final String apellido2){
-		return new Employee (this.id,this.nombre,this.apellido1,apellido2,this.imagen,this.posicion);
+	public Employee setApellido2(final String apellido2) {
+		return new Employee(this.id, this.nombre, this.apellido1, apellido2, this.imagen, this.posicion);
 	}
-	public Employee setImagen( final String imagen){
-		return new Employee (this.id,this.nombre,this.apellido1,this.apellido2,imagen,this.posicion);
+	public Employee setImagen(final String imagen) {
+		return new Employee(this.id, this.nombre, this.apellido1, this.apellido2, imagen, this.posicion);
 	}
-	public Employee setPosicion( final String posicion){
-		return new Employee (this.id,this.nombre,this.apellido1,this.apellido2,this.imagen,posicion);
+	public Employee setPosicion(final String posicion) {
+		return new Employee(this.id, this.nombre, this.apellido1, this.apellido2, this.imagen, posicion);
 	}
 	@Override
 	public int hashCode() {
@@ -125,7 +130,5 @@ public final class Employee {
 			return false;
 		return true;
 	}
-	
-	
-	
+
 }

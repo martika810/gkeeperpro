@@ -71,7 +71,7 @@
                             <div class="input-field col s4">
                                <select id="task_employee" ng-model="task.personAssignedId" class="browser-default">
                                     <option value="" class="disabled selected">Asignar</option>
-                                    <option ng-repeat="employee in employeeList" value="{{employee.id}}">{{employee.nombre}}</option>
+                                    <option ng-repeat="employee in employeeList" value="{{employee.id}}">{{employee.name}}</option>
                                     
                                 </select>
                             </div>
@@ -110,8 +110,8 @@
   	<div>
 		<ul ng-repeat="employee in employeeList" class="collapsible" data-collapsible="accordion">
 			<li class="collection-item">
-                <div class="collapsible-header"><i class="material-icons">place</i>{{employee.nombre}}</div>
-                <div class="collapsible-body"><span>{{employee.apellido1}}</span></div>
+                <div class="collapsible-header"><i class="material-icons">place</i>{{employee.name}}</div>
+                <div class="collapsible-body"><span>{{employee.surname}}</span></div>
             </li>
 		</ul>
   	</div>
@@ -130,8 +130,8 @@
   	<div>
 		<ul ng-repeat="tool in toolList" class="collapsible" data-collapsible="accordion">
 			<li class="collection-item">
-                <div class="collapsible-header"><i class="material-icons">place</i>{{tool.nombre}}</div>
-                <div class="collapsible-body"><span>{{tool.estado}}</span></div>
+                <div class="collapsible-header"><i class="material-icons">place</i>{{tool.name}}</div>
+                <div class="collapsible-body"><span>{{tool.state}}</span></div>
             </li>
 		</ul>
   	</div>

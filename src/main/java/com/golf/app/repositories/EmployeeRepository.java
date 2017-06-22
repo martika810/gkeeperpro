@@ -51,8 +51,8 @@ public class EmployeeRepository implements Repository<String, Employee> {
 
 	public void init() {
 		List<Employee> employees = new ArrayList<>();
-		employees.add(Employee.of("Juan", "Ortega", "Perez", "imagen", "Jardinero"));
-		employees.add(Employee.of("Pedro", "Ortega", "Perez", "imagen", "Corta Arboles"));
+		employees.add(Employee.of("Juan", "Ortega Rubio", "imagen", "Jardinero"));
+		employees.add(Employee.of("Pedro", "Ortega Morales",  "imagen", "Corta Arboles"));
 		update(employees);
 	}
 

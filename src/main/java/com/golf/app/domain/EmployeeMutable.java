@@ -2,20 +2,19 @@ package com.golf.app.domain;
 
 public class EmployeeMutable {
 	private String id;
-	private String nombre;
-	private String apellido1;
+	private String name;
+	private String surname;
 	private String apellido2;
-	private String imagen;
-	private String posicion;
+	private String image;
+	private String position;
 
-	public EmployeeMutable(String id, String nombre, String apellido1, String apellido2, String imagen, String posicion) {
+	public EmployeeMutable(String id, String name, String surname, String image, String position) {
 
 		this.id = id;
-		this.nombre = nombre;
-		this.apellido1 = apellido1;
-		this.apellido2 = apellido2;
-		this.imagen = imagen;
-		this.posicion = posicion;
+		this.name = name;
+		this.surname = surname;
+		this.image = image;
+		this.position = position;
 	}
 
 	public EmployeeMutable(String id) {
@@ -23,30 +22,28 @@ public class EmployeeMutable {
 	}
 
 	public Employee inmutable() {
-		return Employee.of(this.getId(), this.getNombre(), this.getApellido1(), this.getApellido2(), this.getImagen(), this.getPosicion());
+		return Employee.of(this.getId(), this.getName(), this.getSurname(),  this.getImage(), this.getPosition());
 	}
 	public String getId() {
 		return id;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getName() {
+		return name;
 	}
 
-	public String getApellido1() {
-		return apellido1;
+	public String getSurname() {
+		return surname;
 	}
 
-	public String getApellido2() {
-		return apellido2;
+	
+
+	public String getImage() {
+		return image;
 	}
 
-	public String getImagen() {
-		return imagen;
-	}
-
-	public String getPosicion() {
-		return posicion;
+	public String getPosition() {
+		return position;
 	}
 
 	public void setId(String id) {
@@ -54,23 +51,21 @@ public class EmployeeMutable {
 	}
 
 	public void setNombre(String nombre) {
-		this.nombre = nombre;
+		this.name = nombre;
 	}
 
-	public void setApellido1(String apellido1) {
-		this.apellido1 = apellido1;
+	public void setSurname(String surname) {
+		this.surname = surname;
 	}
 
-	public void setApellido2(String apellido2) {
-		this.apellido2 = apellido2;
+
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
-	public void setImagen(String imagen) {
-		this.imagen = imagen;
-	}
-
-	public void setPosicion(String posicion) {
-		this.posicion = posicion;
+	public void setPosition(String position) {
+		this.position = position;
 	}
 
 }

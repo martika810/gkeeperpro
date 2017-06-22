@@ -2,22 +2,22 @@ package com.golf.app.domain;
 
 public class ToolMutable {
 	private String id;
-	private String nombre;
-	private String estado;
-	private String imagen;
+	private String name;
+	private String state;
+	private String image;
 	
 	
-	public ToolMutable(String id, String nombre, String estado, String imagen) {
+	public ToolMutable(String id, String name, String state, String image) {
 		
 		this.id = id;
-		this.nombre = nombre;
-		this.estado = estado;
-		this.imagen = imagen;
+		this.name = name;
+		this.state = state;
+		this.image = image;
 	}
 	//Los objetos tienen que ser inmutables para que sea seguro
 	public Tool inmutable()
 	{
-		return Tool.of(this.getId(),this.getNombre(),this.getEstado(),this.getImagen());
+		return Tool.of(this.getId(),this.getName(),this.getState(),this.getImage());
 	}
 
 	public String getId() {
@@ -28,41 +28,39 @@ public class ToolMutable {
 		this.id = id;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getName() {
+		return name;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getEstado() {
-		return estado;
+	public String getState() {
+		return state;
 	}
 
-	public void setEstado(String estado) {
-		this.estado = estado;
+	public void setState(String state) {
+		this.state = state;
 	}
 
-	public String getImagen() {
-		return imagen;
+	public String getImage() {
+		return image;
 	}
 
-	public void setImagen(String imagen) {
-		this.imagen = imagen;
+	public void setImage(String image) {
+		this.image = image;
 	}
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((estado == null) ? 0 : estado.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((imagen == null) ? 0 : imagen.hashCode());
-		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
+		result = prime * result + ((image == null) ? 0 : image.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((state == null) ? 0 : state.hashCode());
 		return result;
 	}
-	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -72,28 +70,30 @@ public class ToolMutable {
 		if (getClass() != obj.getClass())
 			return false;
 		ToolMutable other = (ToolMutable) obj;
-		if (estado == null) {
-			if (other.estado != null)
-				return false;
-		} else if (!estado.equals(other.estado))
-			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (imagen == null) {
-			if (other.imagen != null)
+		if (image == null) {
+			if (other.image != null)
 				return false;
-		} else if (!imagen.equals(other.imagen))
+		} else if (!image.equals(other.image))
 			return false;
-		if (nombre == null) {
-			if (other.nombre != null)
+		if (name == null) {
+			if (other.name != null)
 				return false;
-		} else if (!nombre.equals(other.nombre))
+		} else if (!name.equals(other.name))
+			return false;
+		if (state == null) {
+			if (other.state != null)
+				return false;
+		} else if (!state.equals(other.state))
 			return false;
 		return true;
 	}
+	
+
 	
 	
 

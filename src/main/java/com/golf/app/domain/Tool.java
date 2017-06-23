@@ -3,6 +3,9 @@ package com.golf.app.domain;
 import java.util.UUID;
 
 public class Tool {
+	
+	public final static String EMPTY = "UNASSIGNED";;
+	
 	private final String id;
 	private final String name;
 	private final String state;

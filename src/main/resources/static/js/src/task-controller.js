@@ -18,10 +18,11 @@ taskApp.controller('taskController',function($scope,$http){
     	    $http.get("/employee")
     	    .then(function(response){
     		$scope.employeeList = response.data
-    		  $http.get("/tool")
-    	    .then(function(response){
-    		$scope.toolList = response.data
-    	    });	
+    	    });
+    	    $http.get("/tool")
+ 	    .then(function(response){
+ 		$scope.toolList = response.data
+ 	    });
     	}
     	$scope.populatePanel();
 	

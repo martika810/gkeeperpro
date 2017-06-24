@@ -16,7 +16,7 @@ public final class Task implements Mutable<TaskMutable> {
 		return new Task(UUID.randomUUID().toString(), title, description, employeeId);
 	}
 
-	static Task of(final String id, final String title, final String description, final String employeeId) {
+	public static Task of(final String id, final String title, final String description, final String employeeId) {
 		return new Task(id, title, description, employeeId);
 	}
 

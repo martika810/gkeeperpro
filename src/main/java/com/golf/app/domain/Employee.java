@@ -27,7 +27,7 @@ public final class Employee extends BaseObject<EmployeeMutable, String> {
 		return new Employee(UUID.randomUUID().toString(), nombre, apellido1, apellido2, imagen, posicion);
 	}
 
-	protected static Employee of(final String id, final String nombre, final String apellido1, final String apellido2, final String imagen,
+	public static Employee of(final String id, final String nombre, final String apellido1, final String apellido2, final String imagen,
 			final String posicion) {
 		return new Employee(id, nombre, apellido1, apellido2, imagen, posicion);
 	}

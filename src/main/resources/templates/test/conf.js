@@ -1,7 +1,8 @@
+
 exports.config = {
   framework: 'jasmine',
   seleniumAddress: 'http://localhost:4444/wd/hub',
-  rootElement: '#taskApp',
+  rootElement: '#taskPanel',
   capabilities: {
       'browserName': 'chrome',
       'chromeOptions': {
@@ -11,5 +12,7 @@ exports.config = {
           'browser': 'ALL'
       }
   },
-  specs: ['test-task-panel.js']
+  baseUrl: 'http://localhost:8090',
+  specs: ['spec/test-*.js'],
+
 }

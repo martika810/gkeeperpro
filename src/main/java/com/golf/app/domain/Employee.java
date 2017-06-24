@@ -7,88 +7,80 @@ public final class Employee extends BaseObject<EmployeeMutable, String> {
 	public final static String EMPTY = "UNASSIGNED";;
 
 	private final String id;
-	private final String nombre;
-	private final String apellido1;
-	private final String apellido2;
-	private final String imagen;
-	private final String posicion;
+	private final String name;
+	private final String surname;
+	private final String image;
+	private final String position;
 
-	private Employee(String id, String nombre, String apellido1, String apellido2, String imagen, String posicion) {
+	private Employee(String id, String name, String surname, String image, String position) {
 
 		this.id = id;
-		this.nombre = nombre;
-		this.apellido1 = apellido1;
-		this.apellido2 = apellido2;
-		this.imagen = imagen;
-		this.posicion = posicion;
+		this.name = name;
+		this.surname = surname;
+		this.image = image;
+		this.position = position;
 	}
 
-	public static Employee of(final String nombre, final String apellido1, final String apellido2, final String imagen, final String posicion) {
-		return new Employee(UUID.randomUUID().toString(), nombre, apellido1, apellido2, imagen, posicion);
+	public static Employee of(final String name, final String surname, final String image, final String position) {
+		return new Employee(UUID.randomUUID().toString(), name, surname, image, position);
 	}
 
-	public static Employee of(final String id, final String nombre, final String apellido1, final String apellido2, final String imagen,
-			final String posicion) {
-		return new Employee(id, nombre, apellido1, apellido2, imagen, posicion);
-	}
+	public static Employee of(final String id, final String name, final String surname, final String image, final String position) {
+		return new Employee(id, name, surname, image, position);
 
+	}
 	// para que se pueda convertir de normal a mutable
 	public EmployeeMutable mutable() {
-		return new EmployeeMutable(this.getId(), this.getNombre(), this.getApellido1(), this.getApellido2(), this.getImagen(), this.getPosicion());
+		return new EmployeeMutable(this.getId(), this.getName(), this.getSurname(), this.getImage(), this.getPosition());
 	}
 
 	public String getId() {
 		return id;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getName() {
+		return name;
 	}
 
-	public String getApellido1() {
-		return apellido1;
+	public String getSurname() {
+		return surname;
 	}
 
-	public String getApellido2() {
-		return apellido2;
+	public String getImage() {
+		return image;
 	}
 
-	public String getImagen() {
-		return imagen;
-	}
-
-	public String getPosicion() {
-		return posicion;
+	public String getPosition() {
+		return position;
 	}
 
 	public Employee setNombre(final String nombre) {
-		return new Employee(this.id, nombre, this.apellido1, this.apellido2, this.imagen, this.posicion);
+		return new Employee(this.id, name, this.surname, this.image, this.position);
 	}
 
-	public Employee setApellido1(final String apellido1) {
-		return new Employee(this.id, this.nombre, apellido1, this.apellido2, this.imagen, this.posicion);
+	public Employee setSurname(final String surname) {
+		return new Employee(this.id, this.name, surname, this.image, this.position);
 	}
-	public Employee setApellido2(final String apellido2) {
-		return new Employee(this.id, this.nombre, this.apellido1, apellido2, this.imagen, this.posicion);
-	}
+
 	public Employee setImagen(final String imagen) {
-		return new Employee(this.id, this.nombre, this.apellido1, this.apellido2, imagen, this.posicion);
+		return new Employee(this.id, this.name, this.surname, imagen, this.position);
 	}
-	public Employee setPosicion(final String posicion) {
-		return new Employee(this.id, this.nombre, this.apellido1, this.apellido2, this.imagen, posicion);
+	public Employee setPosition(final String position) {
+		return new Employee(this.id, this.name, this.surname, this.image, position);
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((apellido1 == null) ? 0 : apellido1.hashCode());
-		result = prime * result + ((apellido2 == null) ? 0 : apellido2.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((imagen == null) ? 0 : imagen.hashCode());
-		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
-		result = prime * result + ((posicion == null) ? 0 : posicion.hashCode());
+		result = prime * result + ((image == null) ? 0 : image.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((position == null) ? 0 : position.hashCode());
+		result = prime * result + ((surname == null) ? 0 : surname.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -98,35 +90,30 @@ public final class Employee extends BaseObject<EmployeeMutable, String> {
 		if (getClass() != obj.getClass())
 			return false;
 		Employee other = (Employee) obj;
-		if (apellido1 == null) {
-			if (other.apellido1 != null)
-				return false;
-		} else if (!apellido1.equals(other.apellido1))
-			return false;
-		if (apellido2 == null) {
-			if (other.apellido2 != null)
-				return false;
-		} else if (!apellido2.equals(other.apellido2))
-			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (imagen == null) {
-			if (other.imagen != null)
+		if (image == null) {
+			if (other.image != null)
 				return false;
-		} else if (!imagen.equals(other.imagen))
+		} else if (!image.equals(other.image))
 			return false;
-		if (nombre == null) {
-			if (other.nombre != null)
+		if (name == null) {
+			if (other.name != null)
 				return false;
-		} else if (!nombre.equals(other.nombre))
+		} else if (!name.equals(other.name))
 			return false;
-		if (posicion == null) {
-			if (other.posicion != null)
+		if (position == null) {
+			if (other.position != null)
 				return false;
-		} else if (!posicion.equals(other.posicion))
+		} else if (!position.equals(other.position))
+			return false;
+		if (surname == null) {
+			if (other.surname != null)
+				return false;
+		} else if (!surname.equals(other.surname))
 			return false;
 		return true;
 	}

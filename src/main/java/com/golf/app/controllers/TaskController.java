@@ -29,7 +29,7 @@ public class TaskController implements com.golf.app.controllers.Controller<TaskM
 	private ToolRepository toolRepository;;
 
 	@Autowired
-	public TaskController(TaskRepository repository, EmployeeRepository employeeRepository,ToolRepository toolRepository) {
+	public TaskController(TaskRepository repository, EmployeeRepository employeeRepository, ToolRepository toolRepository) {
 		this.repository = repository;
 		this.employeeRepository = employeeRepository;
 		this.toolRepository = toolRepository;
@@ -48,18 +48,16 @@ public class TaskController implements com.golf.app.controllers.Controller<TaskM
 	@RequestMapping(consumes = "application/json", method = RequestMethod.PUT)
 	public ResponseEntity<TaskMutable> update(@RequestBody TaskMutable obj) {
 
-		if ((employeeRepository.read(obj.getPersonAssignedId()) != null)||(toolRepository.read(obj.getToolAssignedId()) != null))
-		{
+		boolean taskIsValid = validEmployees(obj.getPersonAssignedIds()) && (toolRepository.read(obj.getToolAssignedId()) != null);
+
+		if (taskIsValid) {
 			repository.update(obj.inmutable());
 			return ResponseEntity.status(HttpStatus.OK).body(repository.read(obj.getId()).mutable());
-		}
-		else 
-		{
+		} else {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).header("error", "Employee not found").body(null);
 		}
 
 	}
-
 	@RequestMapping(value = "/{taskId}", method = RequestMethod.DELETE)
 	public ResponseEntity<TaskMutable> delete(@PathVariable String taskId) {
 		repository.delete(taskId);
@@ -70,6 +68,17 @@ public class TaskController implements com.golf.app.controllers.Controller<TaskM
 	public ResponseEntity<TaskMutable> create(@RequestBody TaskMutable obj) {
 		repository.add(obj.inmutable());
 		return ResponseEntity.status(HttpStatus.OK).body(repository.read(obj.getId()).mutable());
+	}
+
+	private boolean validEmployees(List<String> employeeIds) {
+		boolean valid = true;
+		for (String employeeId : employeeIds) {
+			if (repository.read(employeeId) == null) {
+				return false;
+			}
+		}
+		return valid;
+
 	}
 
 	private TaskMutable convertToApi(final Task task) {

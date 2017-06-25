@@ -2,6 +2,15 @@ console.log("Hello task-controller");
 var taskApp = angular.module('taskApp',[]);
 taskApp.controller('taskController',function($scope,$http){
     	
+    	//Crea un mapa que tiene como key el id del empleado y el valor(con nombre,apellidos,etc)
+	$scope.createEmployeeMap = function(){
+	    var employeeMap = new Object();
+	    $.each($scope.employeeList,function(index,value){
+		employeeMap[value.id] = value;
+	    });
+	    return employeeMap;
+	}
+	
 	//Esto hace una llamada a la clase TaskController
 	//Los datos de respuseta se devuelven en "response.data"
 	//Y se asignan a la variable taskList
@@ -18,6 +27,7 @@ taskApp.controller('taskController',function($scope,$http){
     	    $http.get("/employee")
     	    .then(function(response){
     		$scope.employeeList = response.data
+    		$scope.employeeMap = $scope.createEmployeeMap();
     	    });
     	    $http.get("/tool")
  	    .then(function(response){
@@ -26,6 +36,7 @@ taskApp.controller('taskController',function($scope,$http){
     	}
     	$scope.populatePanel();
 	
+    	
 	$scope.readData = function(){
 		var taskToSave = new Object();
 		taskToSave.id = $('.collection-item.active #task_id').attr('value')
@@ -40,9 +51,7 @@ taskApp.controller('taskController',function($scope,$http){
 	$scope.save = function(){
 	   
 		var taskToSave = $scope.readData();
-		var taskInJson = taskToSave;
-		
-		$http.put('/task',taskInJson)
+		$http.put('/task',taskToSave)
 			.success(function (data, status, headers) {
 			    console.log('sucess');
 			    $scope.populatePanel();

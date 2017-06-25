@@ -24,3 +24,12 @@ textarea.materialize-textarea{
 	border-radius: 5px !important;
 	padding: 10px !important;
 }
+
+#task_employee{
+	border: 1px solid #f2f2f2 !important;
+	padding:5px !important;
+}
+
+#task_employee span{
+	margin: 8px !important;
+}

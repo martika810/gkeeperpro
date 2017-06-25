@@ -1,26 +1,27 @@
 package com.golf.app.domain;
 
+import java.util.List;
 
 public class TaskMutable {
 	private String id;
 	private String title;
 	private String description;
-	private String personAssignedId;
+	private List<String> personAssignedIds;
 	private String toolAssignedId;
-	
+
 	public TaskMutable() {
 	}
 
-	public TaskMutable(String id, String title, String description, String personAssignedId,String toolAssignedId) {
+	public TaskMutable(String id, String title, String description, List<String> personAssignedIds, String toolAssignedId) {
 		this.id = id;
 		this.title = title;
 		this.description = description;
-		this.personAssignedId = personAssignedId;
-		this.toolAssignedId= toolAssignedId;
+		this.personAssignedIds = personAssignedIds;
+		this.toolAssignedId = toolAssignedId;
 	}
 
 	public Task inmutable() {
-		return Task.of(this.getId(), this.getTitle(), this.getDescription(), this.getPersonAssignedId(),this.getToolAssignedId());
+		return Task.of(this.getId(), this.getTitle(), this.getDescription(), this.getPersonAssignedIds(), this.getToolAssignedId());
 	}
 
 	public String getId() {
@@ -47,19 +48,31 @@ public class TaskMutable {
 		this.description = description;
 	}
 
-	public String getPersonAssignedId() {
-		return personAssignedId;
+	public List<String> getPersonAssignedIds() {
+		return personAssignedIds;
 	}
-	
+
 	public String getToolAssignedId() {
 		return toolAssignedId;
 	}
 
-	public void setPersonAssignedId(String personAssignedId) {
-		this.personAssignedId = personAssignedId;
+	public void setPersonAssignedId(List<String> personAssignedIds) {
+		this.personAssignedIds = personAssignedIds;
 	}
 	public void setToolAssignedId(String toolAssignedId) {
 		this.toolAssignedId = toolAssignedId;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((description == null) ? 0 : description.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((personAssignedIds == null) ? 0 : personAssignedIds.hashCode());
+		result = prime * result + ((title == null) ? 0 : title.hashCode());
+		result = prime * result + ((toolAssignedId == null) ? 0 : toolAssignedId.hashCode());
+		return result;
 	}
 
 	@Override
@@ -81,10 +94,10 @@ public class TaskMutable {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (personAssignedId == null) {
-			if (other.personAssignedId != null)
+		if (personAssignedIds == null) {
+			if (other.personAssignedIds != null)
 				return false;
-		} else if (!personAssignedId.equals(other.personAssignedId))
+		} else if (!personAssignedIds.equals(other.personAssignedIds))
 			return false;
 		if (title == null) {
 			if (other.title != null)
@@ -99,15 +112,4 @@ public class TaskMutable {
 		return true;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((description == null) ? 0 : description.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((personAssignedId == null) ? 0 : personAssignedId.hashCode());
-		result = prime * result + ((title == null) ? 0 : title.hashCode());
-		result = prime * result + ((toolAssignedId == null) ? 0 : toolAssignedId.hashCode());
-		return result;
-	}
 }

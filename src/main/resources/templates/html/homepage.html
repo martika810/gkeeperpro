@@ -68,12 +68,16 @@
                             </div>
                        </div>
                        <div class="row">
-                            <div class="input-field col s4">
-                               <select id="task_employee" ng-model="task.personAssignedId" class="browser-default">
-                                    <option value="" class="disabled selected">Empleado</option>
+                            <div id="task_employee" class="input-field col s4">
+                               <select class="browser-default">
+                                    <option value="" class="disabled selected">Asignar</option>
                                     <option ng-repeat="employee in employeeList" value="{{employee.id}}">{{employee.name}}</option>
-                                    
                                 </select>
+                                <span ng-repeat="employeeId in task.personAssignedIds" value="{{employeeId}}" class="chip">
+                                    {{ employeeMap[employeeId].name + " " + employeeMap[employeeId].surname }}
+                                    <i class="close material-icons">close</i>
+                                </span>
+                                
                             </div>
                             <div class="input-field col s4">
                                <select id="task_tool" ng-model="task.toolAssignedId" class="browser-default">

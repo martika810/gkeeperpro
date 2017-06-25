@@ -56,21 +56,11 @@ taskApp.controller('taskController',function($scope,$http){
     		 return id != employeeId;
     	    });
     	}
-    	
-	$scope.readData = function(){
-		var taskToSave = new Object();
-		taskToSave.id = $('.collection-item.active #task_id').attr('value')
-		taskToSave.title = $('.collection-item.active #task_title').val();
-		taskToSave.description = $('.collection-item.active #task_description').val();
-		taskToSave.personAssignedId = $('.collection-item.active #task_employee').val().toString(); 
-		taskToSave.toolAssignedId = $('.collection-item.active #task_tool').val().toString();  
-		
-		return taskToSave;
-	}
 	
 	$scope.save = function(){
 	   
-		var taskToSave = $scope.readData();
+		
+	    	var taskToSave = $scope.selectedTask
 		$http.put('/task',taskToSave)
 			.success(function (data, status, headers) {
 			    console.log('sucess');

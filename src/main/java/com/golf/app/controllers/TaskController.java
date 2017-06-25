@@ -73,7 +73,7 @@ public class TaskController implements com.golf.app.controllers.Controller<TaskM
 	private boolean validEmployees(List<String> employeeIds) {
 		boolean valid = true;
 		for (String employeeId : employeeIds) {
-			if (repository.read(employeeId) == null) {
+			if (employeeRepository.read(employeeId) == null) {
 				return false;
 			}
 		}

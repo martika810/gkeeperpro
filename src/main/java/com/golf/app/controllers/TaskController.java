@@ -16,6 +16,7 @@ import com.golf.app.domain.Task;
 import com.golf.app.domain.TaskMutable;
 import com.golf.app.repositories.EmployeeRepository;
 import com.golf.app.repositories.TaskRepository;
+import com.golf.app.repositories.ToolRepository;
 
 @Controller
 @RequestMapping("/task")
@@ -25,11 +26,13 @@ public class TaskController implements com.golf.app.controllers.Controller<TaskM
 
 	private TaskRepository repository;
 	private EmployeeRepository employeeRepository;;
+	private ToolRepository toolRepository;;
 
 	@Autowired
-	public TaskController(TaskRepository repository, EmployeeRepository employeeRepository) {
+	public TaskController(TaskRepository repository, EmployeeRepository employeeRepository,ToolRepository toolRepository) {
 		this.repository = repository;
 		this.employeeRepository = employeeRepository;
+		this.toolRepository = toolRepository;
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
@@ -45,10 +48,13 @@ public class TaskController implements com.golf.app.controllers.Controller<TaskM
 	@RequestMapping(consumes = "application/json", method = RequestMethod.PUT)
 	public ResponseEntity<TaskMutable> update(@RequestBody TaskMutable obj) {
 
-		if (employeeRepository.read(obj.getPersonAssignedId()) != null) {
+		if ((employeeRepository.read(obj.getPersonAssignedId()) != null)||(toolRepository.read(obj.getToolAssignedId()) != null))
+		{
 			repository.update(obj.inmutable());
 			return ResponseEntity.status(HttpStatus.OK).body(repository.read(obj.getId()).mutable());
-		} else {
+		}
+		else 
+		{
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).header("error", "Employee not found").body(null);
 		}
 

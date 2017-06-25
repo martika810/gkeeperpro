@@ -60,12 +60,12 @@ public class ToolRepository implements Repository<String, Tool> {
 	}
 
 	private void init() {
-		List<Tool> tools = new ArrayList<>();
-		tools.add(Tool.of("Corta cesped", "En uso", "Imagen"));
-		tools.add(Tool.of("Sopladora", "Disponible", "Imagen"));
-		tools.add(Tool.of("Fumigadora", "Disponible", "Imagen"));
-		tools.add(Tool.of("Segadora", "Disponible", "Imagen"));
-		update(tools);
+		List<Tool> toolList = new ArrayList<>();
+		toolList.add(Tool.of("Corta cesped", "En uso", "Imagen"));
+		toolList.add(Tool.of("Sopladora", "Disponible", "Imagen"));
+		toolList.add(Tool.of("Fumigadora", "Disponible", "Imagen"));
+		toolList.add(Tool.of("Segadora", "Disponible", "Imagen"));
+		update(toolList);
 	}
 
 }

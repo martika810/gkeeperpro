@@ -70,15 +70,15 @@
                        <div class="row">
                             <div class="input-field col s4">
                                <select id="task_employee" ng-model="task.personAssignedId" class="browser-default">
-                                    <option value="" class="disabled selected">Asignar</option>
+                                    <option value="" class="disabled selected">Empleado</option>
                                     <option ng-repeat="employee in employeeList" value="{{employee.id}}">{{employee.name}}</option>
                                     
                                 </select>
                             </div>
                             <div class="input-field col s4">
-                               <select id="task_tool" class="browser-default">
+                               <select id="task_tool" ng-model="task.toolAssignedId" class="browser-default">
                                     <option value="" class="disabled selected">Herramienta</option>
-                                    <option value="1">Ninguna</option>
+                                   <option ng-repeat="tool in toolList" value="{{tool.id}}">{{tool.name}}</option>
                                     
                                 </select>
                             </div>

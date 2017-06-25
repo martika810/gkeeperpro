@@ -18,7 +18,11 @@ taskApp.controller('taskController',function($scope,$http){
     	    $http.get("/employee")
     	    .then(function(response){
     		$scope.employeeList = response.data
-    	    });	
+    	    });
+    	    $http.get("/tool")
+ 	    .then(function(response){
+ 		$scope.toolList = response.data
+ 	    });
     	}
     	$scope.populatePanel();
 	
@@ -28,7 +32,7 @@ taskApp.controller('taskController',function($scope,$http){
 		taskToSave.title = $('.collection-item.active #task_title').val();
 		taskToSave.description = $('.collection-item.active #task_description').val();
 		taskToSave.personAssignedId = $('.collection-item.active #task_employee').val().toString(); 
-		   
+		taskToSave.toolAssignedId = $('.collection-item.active #task_tool').val().toString();  
 		
 		return taskToSave;
 	}

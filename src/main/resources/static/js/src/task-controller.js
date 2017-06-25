@@ -1,5 +1,6 @@
 console.log("Hello task-controller");
 var taskApp = angular.module('taskApp',[]);
+
 taskApp.controller('taskController',function($scope,$http){
     	
     	//Crea un mapa que tiene como key el id del empleado y el valor(con nombre,apellidos,etc)
@@ -9,6 +10,10 @@ taskApp.controller('taskController',function($scope,$http){
 		employeeMap[value.id] = value;
 	    });
 	    return employeeMap;
+	}
+	
+	$scope.selectTask = function(selectedTask){
+	   $scope.selectedTask = selectedTask;
 	}
 	
 	//Esto hace una llamada a la clase TaskController
@@ -36,6 +41,21 @@ taskApp.controller('taskController',function($scope,$http){
     	}
     	$scope.populatePanel();
 	
+    	$scope.assignEmployee = function(){
+    	    var selectedEmployee = $('.collection-item.active #employee_dropdown').find(':selected').val();
+    	    var isAlreadyAssigned = ($.inArray(selectedEmployee, $scope.selectedTask.personAssignedIds)!==-1);
+    	    var isEmptyEmployee = selectedEmployee == "";
+    	    if(!isAlreadyAssigned && !isEmptyEmployee){
+    		$scope.selectedTask.personAssignedIds.push(selectedEmployee);
+    		
+    	    }
+    	}
+    	$scope.unassignEmployee = function(employeeId){
+    	    console.log("Unassigned")
+    	    $scope.selectedTask.personAssignedIds = $.grep( $scope.selectedTask.personAssignedIds, function(id){ 
+    		 return id != employeeId;
+    	    });
+    	}
     	
 	$scope.readData = function(){
 		var taskToSave = new Object();

@@ -55,7 +55,8 @@
   	<div>
 		<ul ng-repeat="task in taskList" class="collapsible" data-collapsible="accordion">
 			<li class="collection-item">
-                <div id="task_id" class="collapsible-header" value="{{task.id}}"><i class="material-icons">place</i>{{task.title}}</div>
+                <div id="task_id" class="collapsible-header" ng-click="selectTask(task)" value="{{task.id}}">
+                    <i class="material-icons">place</i>{{task.title}}</div>
                 <div class="collapsible-body">
                 	<form class="col s11">
                        <div class="row">
@@ -69,13 +70,16 @@
                        </div>
                        <div class="row">
                             <div id="task_employee" class="input-field col s4">
-                               <select class="browser-default">
+                               <select id="employee_dropdown" ng-change="assignEmployee()" ng-model="selectedEmployee" class="browser-default" >
                                     <option value="" class="disabled selected">Asignar</option>
-                                    <option ng-repeat="employee in employeeList" value="{{employee.id}}">{{employee.name}}</option>
+                                    <option ng-repeat="employee in employeeList" value="{{employee.id}}">
+                                        {{employee.name}}
+                                    </option>
                                 </select>
-                                <span ng-repeat="employeeId in task.personAssignedIds" value="{{employeeId}}" class="chip">
+                                <span ng-repeat="employeeId in task.personAssignedIds" 
+                                     value="{{employeeId}}" class="chip">
                                     {{ employeeMap[employeeId].name + " " + employeeMap[employeeId].surname }}
-                                    <i class="close material-icons">close</i>
+                                    <i ng-click="unassignEmployee(employeeId)" class="close material-icons">close</i>
                                 </span>
                                 
                             </div>

@@ -5,10 +5,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import com.golf.app.domain.Tool;
 
+@Profile("stubbed")
 @Component("ToolRepository")
 public class ToolRepository implements Repository<String, Tool> {
 

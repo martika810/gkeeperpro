@@ -5,10 +5,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import com.golf.app.domain.Employee;
 
+@Profile("stubbed")
 @Component("EmployeeRepository")
 // le dice a Springboot que cree un objeto de ese tipo
 public class EmployeeRepository implements Repository<String, Employee> {
@@ -51,8 +53,8 @@ public class EmployeeRepository implements Repository<String, Employee> {
 
 	public void init() {
 		List<Employee> employees = new ArrayList<>();
-		employees.add(Employee.of("Juan", "Ortega Rubio", "imagen", "Jardinero"));
-		employees.add(Employee.of("Pedro", "Ortega Morales",  "imagen", "Corta Arboles"));
+		employees.add(Employee.of("52", "Juan", "Ortega Rubio", "imagen", "Jardinero"));
+		employees.add(Employee.of("53", "Pedro", "Ortega Morales", "imagen", "Corta Arboles"));
 		update(employees);
 	}
 

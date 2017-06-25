@@ -12,7 +12,7 @@ public final class Employee extends BaseObject<EmployeeMutable, String> {
 	private final String image;
 	private final String position;
 
-	private Employee(String id, String name, String surname,  String image, String position) {
+	private Employee(String id, String name, String surname, String image, String position) {
 
 		this.id = id;
 		this.name = name;
@@ -21,18 +21,17 @@ public final class Employee extends BaseObject<EmployeeMutable, String> {
 		this.position = position;
 	}
 
-	public static Employee of(final String name, final String surname,  final String image, final String position) {
-		return new Employee(UUID.randomUUID().toString(), name, surname,  image, position);
+	public static Employee of(final String name, final String surname, final String image, final String position) {
+		return new Employee(UUID.randomUUID().toString(), name, surname, image, position);
 	}
 
-	protected static Employee of(final String id, final String name, final String surname, final String image,
-			final String position) {
-		return new Employee(id, name, surname,  image, position);
-	}
+	public static Employee of(final String id, final String name, final String surname, final String image, final String position) {
+		return new Employee(id, name, surname, image, position);
 
+	}
 	// para que se pueda convertir de normal a mutable
 	public EmployeeMutable mutable() {
-		return new EmployeeMutable(this.getId(), this.getName(), this.getSurname(),  this.getImage(), this.getPosition());
+		return new EmployeeMutable(this.getId(), this.getName(), this.getSurname(), this.getImage(), this.getPosition());
 	}
 
 	public String getId() {
@@ -46,8 +45,6 @@ public final class Employee extends BaseObject<EmployeeMutable, String> {
 	public String getSurname() {
 		return surname;
 	}
-
-	
 
 	public String getImage() {
 		return image;
@@ -64,12 +61,12 @@ public final class Employee extends BaseObject<EmployeeMutable, String> {
 	public Employee setSurname(final String surname) {
 		return new Employee(this.id, this.name, surname, this.image, this.position);
 	}
-	
+
 	public Employee setImagen(final String imagen) {
-		return new Employee(this.id, this.name, this.surname,  imagen, this.position);
+		return new Employee(this.id, this.name, this.surname, imagen, this.position);
 	}
 	public Employee setPosition(final String position) {
-		return new Employee(this.id, this.name, this.surname,  this.image, position);
+		return new Employee(this.id, this.name, this.surname, this.image, position);
 	}
 
 	@Override
@@ -121,6 +118,4 @@ public final class Employee extends BaseObject<EmployeeMutable, String> {
 		return true;
 	}
 
-	
-	
 }

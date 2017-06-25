@@ -16,7 +16,7 @@
     <script type="text/javascript" th:src="@{/js/src/task-controller.js}" />
    	<script type="text/javascript" th:src="@{/js/src/tab-controller.js}" />
 </head>
-<body>
+<body >
 	<nav class="nav-extended">
     <div class="nav-wrapper">
       
@@ -33,9 +33,9 @@
     <!--    -->
     <div id="tabPanel" class="nav-content" ng-app="tabApp" ng-controller="navTabController">
       <ul class="tabs tabs-transparent">
-        <li class="tab"><a ng-click="changeTab($event,'taskPanel')" class="active">Tareas</a></li>
-        <li class="tab"><a ng-click="changeTab($event,'employeePanel')">Empleados</a></li>
-        <li class="tab"><a ng-click="changeTab($event,'toolPanel')">Herramientas</a></li>
+        <li class="tab"><a id="tabTask" ng-click="changeTab($event,'taskPanel')" class="active">Tareas</a></li>
+        <li class="tab"><a id="tabEmployee" ng-click="changeTab($event,'employeePanel')">Empleados</a></li>
+        <li class="tab"><a id="tabTool" ng-click="changeTab($event,'toolPanel')">Herramientas</a></li>
       </ul>
     </div>
   </nav>

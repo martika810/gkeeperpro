@@ -5,10 +5,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import com.golf.app.domain.Task;
 
+@Profile("stubbed")
 @Component("TaskRepository")
 public class TaskRepository implements Repository<String, Task> {
 
@@ -57,9 +59,9 @@ public class TaskRepository implements Repository<String, Task> {
 
 	private void init() {
 		List<Task> tasks = new ArrayList<>();
-		tasks.add(Task.of("Task1", "Description task1"));
-		tasks.add(Task.of("Task2", "Description task2"));
-		tasks.add(Task.of("Task3", "Description task3"));
+		tasks.add(Task.of("1", "Task1", "Description task1", "52"));
+		tasks.add(Task.of("2", "Task2", "Description task2", "53"));
+		tasks.add(Task.of("3", "Task3", "Description task3", "52"));
 		update(tasks);
 	}
 

@@ -13,20 +13,25 @@ public final class Task implements Mutable<TaskMutable> {
 		return new Task(UUID.randomUUID().toString(), title, description, Employee.EMPTY, Tool.EMPTY);
 	}
 
-	static Task of(final String id, final String title, final String description, final String employeeId, final String toolId) {
-		return new Task(id, title, description, employeeId,toolId);
+	public static Task of(final String title, final String description, final String employeeId, final String toolId) {
+		return new Task(UUID.randomUUID().toString(), title, description, employeeId, toolId);
+	}
+
+	public static Task of(final String id, final String title, final String description, final String employeeId, final String toolId) {
+		return new Task(id, title, description, employeeId, toolId);
+
 	}
 
 	public TaskMutable mutable() {
 		return new TaskMutable(this.getId(), this.getTitle(), this.getDescription(), this.getPersonAssignedId(), this.getToolAssignedId());
 	}
 
-	private Task(final String id, final String title, final String description, final String personAssignedId,final String toolAssignedId) {
+	private Task(final String id, final String title, final String description, final String personAssignedId, final String toolAssignedId) {
 		this.id = id;
 		this.title = title;
 		this.description = description;
 		this.personAssignedId = personAssignedId;
-		this.toolAssignedId= toolAssignedId;
+		this.toolAssignedId = toolAssignedId;
 	}
 
 	public String getId() {
@@ -38,7 +43,7 @@ public final class Task implements Mutable<TaskMutable> {
 	public String getDescription() {
 		return description;
 	}
-	
+
 	public String getToolAssignedId() {
 		return toolAssignedId;
 	}
@@ -48,15 +53,15 @@ public final class Task implements Mutable<TaskMutable> {
 	}
 
 	public Task withTitle(final String title) {
-		return new Task(this.id, title, this.description, this.personAssignedId,this.toolAssignedId);
+		return new Task(this.id, title, this.description, this.personAssignedId, this.toolAssignedId);
 	}
 
 	public Task withDescription(final String description) {
-		return new Task(this.id, this.title, description, this.personAssignedId,this.toolAssignedId);
+		return new Task(this.id, this.title, description, this.personAssignedId, this.toolAssignedId);
 	}
 
 	public Task withPersonAssigned(final String employeeId) {
-		return new Task(this.id, this.title, this.description, employeeId,this.toolAssignedId);
+		return new Task(this.id, this.title, this.description, employeeId, this.toolAssignedId);
 	}
 
 	@Override

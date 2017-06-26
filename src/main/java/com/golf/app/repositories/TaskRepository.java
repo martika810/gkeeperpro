@@ -1,6 +1,7 @@
 package com.golf.app.repositories;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -59,10 +60,9 @@ public class TaskRepository implements Repository<String, Task> {
 
 	private void init() {
 		List<Task> tasks = new ArrayList<>();
-		tasks.add(Task.of("1", "Task1", "Description task1", "52"));
-		tasks.add(Task.of("2", "Task2", "Description task2", "53"));
-		tasks.add(Task.of("3", "Task3", "Description task3", "52"));
+		tasks.add(Task.of("1", "Task1", "Description task1", Arrays.asList("52", "53"), "1"));
+		tasks.add(Task.of("2", "Task2", "Description task2", Arrays.asList("52", "53"), "1"));
+		tasks.add(Task.of("3", "Task3", "Description task3", Arrays.asList("52", "53"), "1"));
 		update(tasks);
 	}
-
 }

@@ -38,12 +38,20 @@ describe('taskController', function() {
     
       var doneButton =  element(by.css('.collection-item.active .collapsible-body .btn'));
       expect(doneButton.isDisplayed()).toBe(true);
-         
+           
   });
   
-  it('Cambiar el titulo de la tarea, clickar hecho y comprobar que se ha guardado',function(){
+  it('Comprobar que los empleados asignados a la tarea se muestran',function(){
+      var employeesAssigned = element.all(by.css('.collection-item.active .collapsible-body #task_employee span.chip'));
+      expect(employeesAssigned.count()).toBe(2);
       
-      //TODO
+      
+      var firstElement = element.all(by.css('.collection-item.active .collapsible-body #task_employee span.chip')).first();
+      var arrayOfEmployees = firstElement.getText().then(function(text){
+	  var employeeName = text.split('\n')[0];
+	  expect(employeeName).toBe('Juan Ortega Rubio');
+      });
+           
   });
   
 });

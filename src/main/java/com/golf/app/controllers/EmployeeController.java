@@ -1,6 +1,7 @@
 package com.golf.app.controllers;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +30,9 @@ public class EmployeeController implements com.golf.app.controllers.Controller<E
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<List<EmployeeMutable>> getAll() {
+	public ResponseEntity<Map<String, EmployeeMutable>> getAll() {
 
-		List<Employee> employees = repository.readAll();
+		Map<String, Employee> employees = repository.readAll();
 		List<EmployeeMutable> employeeReponse = convertToApi(employees);
 		return ResponseEntity.status(HttpStatus.OK).body(employeeReponse);
 

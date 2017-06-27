@@ -1,6 +1,7 @@
 package com.golf.app.repositories;
 
 import java.util.List;
+import java.util.Map;
 
 public interface Repository<KEY, TYPE> {
 
@@ -9,5 +10,5 @@ public interface Repository<KEY, TYPE> {
 	void update(List<TYPE> obj);
 	TYPE read(KEY key);
 	void delete(KEY key);
-	List<TYPE> readAll();
+	Map<KEY, TYPE> readAll();
 }

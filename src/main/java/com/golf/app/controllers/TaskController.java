@@ -1,7 +1,8 @@
 package com.golf.app.controllers;
 
+import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.golf.app.domain.Mutable;
 import com.golf.app.domain.Task;
 import com.golf.app.domain.TaskMutable;
 import com.golf.app.repositories.EmployeeRepository;
@@ -36,15 +38,15 @@ public class TaskController implements com.golf.app.controllers.Controller<TaskM
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<List<TaskMutable>> getAll() {
+	public ResponseEntity<Map<String, TaskMutable>> getAll() {
 
-		List<Task> tasks = repository.readAll();
+		Map<String, Task> tasks = repository.readAll();
 
-		List<TaskMutable> taskReponse = convertToApi(tasks);
-		return ResponseEntity.status(HttpStatus.OK).body(taskReponse);
+		Map<String,Mutable>
+		Map<String, TaskMutable> taskResponse = convertToApi(tasks);
+		return ResponseEntity.status(HttpStatus.OK).body(taskResponse);
 
 	}
-
 	@RequestMapping(consumes = "application/json", method = RequestMethod.PUT)
 	public ResponseEntity<TaskMutable> update(@RequestBody TaskMutable obj) {
 
@@ -81,11 +83,17 @@ public class TaskController implements com.golf.app.controllers.Controller<TaskM
 
 	}
 
-	private TaskMutable convertToApi(final Task task) {
-		return task.mutable();
-	}
+	// private TaskMutable convertToApi(final Task task) {
+	// return task.mutable();
+	// }
 
-	private List<TaskMutable> convertToApi(final List<Task> taskList) {
-		return taskList.stream().map(t -> this.convertToApi(t)).collect(Collectors.toList());
+	private Map<String, ?> convertToApi(final Map<String, Mutable<?>> map) {
+		Map<String, Mutable<?>> mutableMap = new HashMap<>();
+		map.keySet().stream().forEach(key -> {
+			Mutable<?> taskMutable = (Mutable<?>) map.get(key).mutable();
+			mutableMap.put(key, taskMutable);
+
+		});
+		return mutableMap;
 	}
 }

@@ -54,9 +54,9 @@ public class ToolRepository implements Repository<String, Tool> {
 	}
 
 	@Override
-	public List<Tool> readAll() {
+	public Map<String, Tool> readAll() {
 
-		return new ArrayList<>(dataSource.values());
+		return new HashMap<>(dataSource);
 	}
 
 	private void init() {

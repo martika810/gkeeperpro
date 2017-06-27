@@ -54,8 +54,8 @@ public class TaskRepository implements Repository<String, Task> {
 	}
 
 	@Override
-	public List<Task> readAll() {
-		return new ArrayList<>(dataSource.values());
+	public Map<String, Task> readAll() {
+		return new HashMap<>(dataSource);
 	}
 
 	private void init() {

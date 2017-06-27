@@ -22,10 +22,10 @@ taskApp.controller('taskController',function($scope,$http){
     	$scope.populatePanel = function(){
     	    $http.get("/task")
     	    .then(function(response){
-    		$scope.taskList = response.data
+    		    $scope.taskList = response.data
 			
-		//cuando haya un cambio en la variable "taskList", entonces se ejecuta estaa funcion
-		$scope.$watch('taskList', function() {
+		        //cuando haya un cambio en la variable "taskList", entonces se ejecuta estaa funcion
+        		$scope.$watch('taskList', function() {
 		    $('.collapsible').collapsible();
 		}, true);
     	    });

@@ -59,8 +59,8 @@ public class EmployeeRepository implements Repository<String, Employee> {
 	}
 
 	@Override
-	public List<Employee> readAll() {
-		return new ArrayList<>(dataSource.values());
+	public Map<String, Employee> readAll() {
+		return new HashMap<>(dataSource);
 	}
 
 }

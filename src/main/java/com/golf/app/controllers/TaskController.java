@@ -40,13 +40,20 @@ public class TaskController implements com.golf.app.controllers.Controller<TaskM
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<Map<String, TaskMutable>> getAll() {
 
-		Map<String, Task> tasks = repository.readAll();
+		Map<String,Task> tasks = repository.readAll();
 
-		Map<String,Mutable>
+
 		Map<String, TaskMutable> taskResponse = convertToApi(tasks);
 		return ResponseEntity.status(HttpStatus.OK).body(taskResponse);
 
 	}
+
+	@RequestMapping(path = "/by_employee", method = RequestMethod.GET)
+	public ResponseEntity<Map<String,List<String>>> getTasksGroupByEmployee(){
+		Map<String,List<String>> taskGroupByEmployee = repository.readGroupByEmployee();
+		return ResponseEntity.status(HttpStatus.OK).body(taskGroupByEmployee);
+	}
+
 	@RequestMapping(consumes = "application/json", method = RequestMethod.PUT)
 	public ResponseEntity<TaskMutable> update(@RequestBody TaskMutable obj) {
 
@@ -60,6 +67,7 @@ public class TaskController implements com.golf.app.controllers.Controller<TaskM
 		}
 
 	}
+
 	@RequestMapping(value = "/{taskId}", method = RequestMethod.DELETE)
 	public ResponseEntity<TaskMutable> delete(@PathVariable String taskId) {
 		repository.delete(taskId);
@@ -83,14 +91,10 @@ public class TaskController implements com.golf.app.controllers.Controller<TaskM
 
 	}
 
-	// private TaskMutable convertToApi(final Task task) {
-	// return task.mutable();
-	// }
-
-	private Map<String, ?> convertToApi(final Map<String, Mutable<?>> map) {
-		Map<String, Mutable<?>> mutableMap = new HashMap<>();
+	private Map<String, TaskMutable> convertToApi(final Map<String, Task> map) {
+		Map<String, TaskMutable> mutableMap = new HashMap<>();
 		map.keySet().stream().forEach(key -> {
-			Mutable<?> taskMutable = (Mutable<?>) map.get(key).mutable();
+			TaskMutable taskMutable = map.get(key).mutable();
 			mutableMap.put(key, taskMutable);
 
 		});

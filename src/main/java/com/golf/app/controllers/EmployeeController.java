@@ -1,9 +1,12 @@
 package com.golf.app.controllers;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import com.golf.app.domain.Mutable;
+import com.golf.app.domain.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +36,7 @@ public class EmployeeController implements com.golf.app.controllers.Controller<E
 	public ResponseEntity<Map<String, EmployeeMutable>> getAll() {
 
 		Map<String, Employee> employees = repository.readAll();
-		List<EmployeeMutable> employeeReponse = convertToApi(employees);
+		Map<String, EmployeeMutable> employeeReponse = convertToApi(employees);
 		return ResponseEntity.status(HttpStatus.OK).body(employeeReponse);
 
 	}
@@ -56,11 +59,13 @@ public class EmployeeController implements com.golf.app.controllers.Controller<E
 		return null;
 	}
 
-	private EmployeeMutable convertToApi(final Employee employee) {
-		return employee.mutable();
-	}
+	private Map<String, EmployeeMutable> convertToApi(final Map<String, Employee> map) {
+		Map<String, EmployeeMutable> mutableMap = new HashMap<>();
+		map.keySet().stream().forEach(key -> {
+			EmployeeMutable taskMutable = map.get(key).mutable();
+			mutableMap.put(key, taskMutable);
 
-	private List<EmployeeMutable> convertToApi(final List<Employee> employeeList) {
-		return employeeList.stream().map(t -> this.convertToApi(t)).collect(Collectors.toList());
+		});
+		return mutableMap;
 	}
 }

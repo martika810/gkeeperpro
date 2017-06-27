@@ -1,9 +1,13 @@
 package com.golf.app.controllers;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
+import com.golf.app.domain.Mutable;
+import com.golf.app.domain.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,14 +32,10 @@ public class ToolController implements com.golf.app.controllers.Controller<ToolM
 		this.repository=repository;
 	}
 	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<List<ToolMutable>> getAll() {
-		List<Tool> tools=new ArrayList<>();
-		tools.add(Tool.of("Corta cesped", "En uso", "Imagen"));
-		tools.add(Tool.of("Sopladora", "Disponible", "Imagen"));
-		tools.add(Tool.of("Fumigadora", "Disponible", "Imagen"));
-		tools.add(Tool.of("Segadora", "Disponible", "Imagen"));
-		repository.update(tools);
-		List<ToolMutable> toolResponse=convertToApi(tools);
+	public ResponseEntity<Map<String,ToolMutable>> getAll() {
+		Map<String,Tool> tools=repository.readAll();
+
+		Map<String,ToolMutable> toolResponse=convertToApi(tools);
 		return ResponseEntity.status(HttpStatus.OK).body(toolResponse);
 	}
 
@@ -56,12 +56,14 @@ public class ToolController implements com.golf.app.controllers.Controller<ToolM
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	private ToolMutable convertToApi(final Tool tool){
-		return tool.mutable();
-	}
-	
-	private List<ToolMutable> convertToApi(final List<Tool> toolList){
-		return toolList.stream().map(t ->this.convertToApi(t)).collect(Collectors.toList());
+
+	private Map<String, ToolMutable> convertToApi(final Map<String, Tool> map) {
+		Map<String, ToolMutable> mutableMap = new HashMap<>();
+		map.keySet().stream().forEach(key -> {
+			ToolMutable taskMutable =  map.get(key).mutable();
+			mutableMap.put(key, taskMutable);
+
+		});
+		return mutableMap;
 	}
 }

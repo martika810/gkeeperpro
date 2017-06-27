@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.golf.app.repositories.collection.TaskEmployeeMap;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
@@ -45,6 +46,11 @@ public class TaskRepository implements Repository<String, Task> {
 	@Override
 	public Task read(String key) {
 		return dataSource.get(key);
+	}
+
+	public Map<String,List<String>> readGroupByEmployee(){
+		Map<String,Task> taskMap = readAll();
+		return TaskEmployeeMap.groupByEmployee(taskMap);
 	}
 
 	@Override

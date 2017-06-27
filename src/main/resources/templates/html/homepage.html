@@ -118,8 +118,16 @@
   	<div>
 		<ul ng-repeat="employee in employeeList" class="collapsible" data-collapsible="accordion">
 			<li class="collection-item">
-                <div class="collapsible-header"><i class="material-icons">place</i>{{employee.name}}</div>
-                <div class="collapsible-body"><span>{{employee.surname}}</span></div>
+                <div class="collapsible-header"><i class="material-icons">place</i>{{employee.name + " " + employee.surname}}</div>
+
+                <div  class="collapsible-body">
+                    <ul ng-repeat="taskId in taskGroupByEmployeeMap[employee.id]" class="collapsible" data-collapsible="accordion">
+                        <li class="collection-item">
+                            <div class="collapsible-header"><i class="material-icons">place</i>{{taskMap[taskId].title}}</div>
+                            <div  class="collapsible-body"><span>{{taskMap[taskId].description}}</span></div>
+                        </li>
+                    </ul>
+                </div>
             </li>
 		</ul>
   	</div>

@@ -1,7 +1,10 @@
 package com.golf.app.controllers;
 
+import java.util.HashMap;
 import java.util.Map;
 
+import com.golf.app.domain.Mutable;
+import com.golf.app.domain.Task;
 import org.springframework.http.ResponseEntity;
 
 public interface Controller<TYPE> {

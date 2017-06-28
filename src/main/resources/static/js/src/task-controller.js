@@ -12,6 +12,33 @@ taskApp.controller('taskController',function($scope,$http){
 	    return employeeMap;
 	}
 	
+	
+	
+	
+	//esto lo he puesto así, bien separadito, para que se vea...lo añadí por si fuera ese el error, pensando que faltaba
+	
+	
+	
+	
+	
+	$scope.createToolMap = function(){
+	    var toolMap = new Object();
+	    $.each($scope.toolList,function(index,value){
+		toolMap[value.id] = value;
+	    });
+	    return toolMap;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	$scope.selectTask = function(selectedTask){
 	   $scope.selectedTask = selectedTask;
 	}
@@ -37,6 +64,7 @@ taskApp.controller('taskController',function($scope,$http){
     	    $http.get("/tool")
  	    .then(function(response){
  		$scope.toolList = response.data
+ 		$scope.toolMap = $scope.createToolMap();
  	    });
     	}
     	$scope.populatePanel();
@@ -54,6 +82,21 @@ taskApp.controller('taskController',function($scope,$http){
     	    console.log("Unassigned")
     	    $scope.selectedTask.personAssignedIds = $.grep( $scope.selectedTask.personAssignedIds, function(id){ 
     		 return id != employeeId;
+    	    });
+    	}
+    	$scope.assignTool = function(){
+    	    var selectedTool = $('.collection-item.active #tool_dropdown').find(':selected').val();
+    	    var isAlreadyAssigned = ($.inArray(selectedTool, $scope.selectedTask.toolAssignedIds)!==-1);
+    	    var isEmptyTool = selectedTool == "";
+    	    if(!isAlreadyAssigned && !isEmptyTool){
+    		$scope.selectedTask.toolAssignedIds.push(selectedTool);
+    		
+    	    }
+    	}
+    	$scope.unassignTool = function(toolId){
+    	    console.log("Unassigned")
+    	    $scope.selectedTask.toolAssignedIds = $.grep( $scope.selectedTask.toolAssignedIds, function(id){ 
+    		 return id != toolId;
     	    });
     	}
 	

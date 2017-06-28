@@ -10,31 +10,31 @@ public final class Task implements Mutable<TaskMutable> {
 	private final String title;
 	private final String description;
 	private final List<String> personAssignedIds;
-	private final String toolAssignedId;
+	private final List<String> toolAssignedIds;
 
 	public static Task of(final String title, final String description) {
-		return new Task(UUID.randomUUID().toString(), title, description, Collections.emptyList(), Tool.EMPTY);
+		return new Task(UUID.randomUUID().toString(), title, description, Collections.emptyList(), Collections.emptyList());
 	}
 
-	public static Task of(final String title, final String description, final List<String> employeeIds, final String toolId) {
-		return new Task(UUID.randomUUID().toString(), title, description, employeeIds, toolId);
+	public static Task of(final String title, final String description, final List<String> employeeIds, final List<String> toolIds) {
+		return new Task(UUID.randomUUID().toString(), title, description, employeeIds, toolIds);
 	}
 
-	public static Task of(final String id, final String title, final String description, final List<String> employeeIds, final String toolId) {
-		return new Task(id, title, description, employeeIds, toolId);
+	public static Task of(final String id, final String title, final String description, final List<String> employeeIds, final List<String> toolIds) {
+		return new Task(id, title, description, employeeIds, toolIds);
 
 	}
 
 	public TaskMutable mutable() {
-		return new TaskMutable(this.getId(), this.getTitle(), this.getDescription(), this.getPersonAssignedIds(), this.getToolAssignedId());
+		return new TaskMutable(this.getId(), this.getTitle(), this.getDescription(), this.getPersonAssignedIds(), this.getToolAssignedIds());
 	}
 
-	private Task(final String id, final String title, final String description, final List<String> personAssignedIds, final String toolAssignedId) {
+	private Task(final String id, final String title, final String description, final List<String> personAssignedIds, final List<String> toolAssignedIds) {
 		this.id = id;
 		this.title = title;
 		this.description = description;
 		this.personAssignedIds = new LinkedList<>(personAssignedIds);
-		this.toolAssignedId = toolAssignedId;
+		this.toolAssignedIds = new LinkedList<>(toolAssignedIds);
 	}
 
 	public String getId() {
@@ -47,8 +47,8 @@ public final class Task implements Mutable<TaskMutable> {
 		return description;
 	}
 
-	public String getToolAssignedId() {
-		return toolAssignedId;
+	public List<String> getToolAssignedIds() {
+		return new LinkedList<>(toolAssignedIds);
 	}
 
 	public List<String> getPersonAssignedIds() {
@@ -56,18 +56,19 @@ public final class Task implements Mutable<TaskMutable> {
 	}
 
 	public Task withTitle(final String title) {
-		return new Task(this.id, title, this.description, this.personAssignedIds, this.toolAssignedId);
+		return new Task(this.id, title, this.description, this.personAssignedIds, this.toolAssignedIds);
 	}
 
 	public Task withDescription(final String description) {
-		return new Task(this.id, this.title, description, this.personAssignedIds, this.toolAssignedId);
+		return new Task(this.id, this.title, description, this.personAssignedIds, this.toolAssignedIds);
 	}
 
 	public Task withPersonAssigned(final String employeeId) {
 		this.personAssignedIds.add(employeeId);
-		return new Task(this.id, this.title, this.description, this.personAssignedIds, this.toolAssignedId);
+		return new Task(this.id, this.title, this.description, this.personAssignedIds, this.toolAssignedIds);
 	}
-
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -76,7 +77,7 @@ public final class Task implements Mutable<TaskMutable> {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((personAssignedIds == null) ? 0 : personAssignedIds.hashCode());
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
-		result = prime * result + ((toolAssignedId == null) ? 0 : toolAssignedId.hashCode());
+		result = prime * result + ((toolAssignedIds == null) ? 0 : toolAssignedIds.hashCode());
 		return result;
 	}
 
@@ -109,10 +110,10 @@ public final class Task implements Mutable<TaskMutable> {
 				return false;
 		} else if (!title.equals(other.title))
 			return false;
-		if (toolAssignedId == null) {
-			if (other.toolAssignedId != null)
+		if (toolAssignedIds == null) {
+			if (other.toolAssignedIds != null)
 				return false;
-		} else if (!toolAssignedId.equals(other.toolAssignedId))
+		} else if (!toolAssignedIds.equals(other.toolAssignedIds))
 			return false;
 		return true;
 	}

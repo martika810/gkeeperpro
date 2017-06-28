@@ -33,3 +33,9 @@ textarea.materialize-textarea{
 #task_employee span{
 	margin: 8px !important;
 }
+#task_tool{
+	border: 1px solid #f2f2f2 !important;
+	padding:5px !important;
+}
+
+

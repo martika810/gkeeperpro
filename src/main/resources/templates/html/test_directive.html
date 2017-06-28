@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.springframework.org/schema/mvc">
+<head>
+    <title>Page</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css"></link>
+    <link rel="stylesheet" th:href="@{/css/main.css}" ></link>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"></link>
+    
+    <!-- Javascript -->
+    <script tytpe="text/javascript" th:src="@{/js/lib/jquery.js}" />
+    <script type="text/javascript" th:src="@{/js/lib/angular.js}" />
+    <script type="text/javascript" th:src="@{/js/lib/materialize.js}" />
+    
+     <script type="text/javascript" th:src="@{/js/src/test-directive.js}" />
+</head>
+
+<body id="directivePanel" ng-controller="directiveController">
+    <h1>Test directive</h1>
+    <div ng-include="'/parr'" />  
+</body>
+</html>

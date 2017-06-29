@@ -11,34 +11,21 @@ taskApp.controller('taskController',function($scope,$http){
 	    });
 	    return employeeMap;
 	}
-	
-	
-	
-	
+
+
 	//esto lo he puesto así, bien separadito, para que se vea...lo añadí por si fuera ese el error, pensando que faltaba
+	//pero tampoco hace falta deja tanto espeacio, con tres espacios vale! XD
 	
-	
-	
-	
-	
+
 	$scope.createToolMap = function(){
 	    var toolMap = new Object();
 	    $.each($scope.toolList,function(index,value){
-		toolMap[value.id] = value;
+		    toolMap[value.id] = value;
 	    });
 	    return toolMap;
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	$scope.selectTask = function(selectedTask){
 	   $scope.selectedTask = selectedTask;
 	}
@@ -57,16 +44,16 @@ taskApp.controller('taskController',function($scope,$http){
 		}, true);
     	    });
     	    $http.get("/employee")
-    	    .then(function(response){
-    		$scope.employeeList = response.data
-    		$scope.employeeMap = $scope.createEmployeeMap();
-    	    });
+    	        .then(function(response){
+    		        $scope.employeeList = response.data
+    		        $scope.employeeMap = $scope.createEmployeeMap();
+    	        });
     	    $http.get("/tool")
- 	    .then(function(response){
- 		$scope.toolList = response.data
- 		$scope.toolMap = $scope.createToolMap();
- 	    });
-    	}
+ 	            .then(function(response){
+ 		            $scope.toolList = response.data
+ 		            $scope.toolMap = $scope.createToolMap();
+ 	            });
+    	    }
     	$scope.populatePanel();
 	
     	$scope.assignEmployee = function(){
@@ -74,24 +61,28 @@ taskApp.controller('taskController',function($scope,$http){
     	    var isAlreadyAssigned = ($.inArray(selectedEmployee, $scope.selectedTask.personAssignedIds)!==-1);
     	    var isEmptyEmployee = selectedEmployee == "";
     	    if(!isAlreadyAssigned && !isEmptyEmployee){
-    		$scope.selectedTask.personAssignedIds.push(selectedEmployee);
+    	       $scope.selectedTask.personAssignedIds.push(selectedEmployee);
     		
     	    }
+    	    //TODO seleccionar la opcion asignar
     	}
+
     	$scope.unassignEmployee = function(employeeId){
     	    console.log("Unassigned")
     	    $scope.selectedTask.personAssignedIds = $.grep( $scope.selectedTask.personAssignedIds, function(id){ 
     		 return id != employeeId;
     	    });
     	}
+
     	$scope.assignTool = function(){
     	    var selectedTool = $('.collection-item.active #tool_dropdown').find(':selected').val();
     	    var isAlreadyAssigned = ($.inArray(selectedTool, $scope.selectedTask.toolAssignedIds)!==-1);
     	    var isEmptyTool = selectedTool == "";
     	    if(!isAlreadyAssigned && !isEmptyTool){
-    		$scope.selectedTask.toolAssignedIds.push(selectedTool);
+    		    $scope.selectedTask.toolAssignedIds.push(selectedTool);
     		
     	    }
+    	    //TODO seleccionar la opcion asignar
     	}
     	$scope.unassignTool = function(toolId){
     	    console.log("Unassigned")
@@ -100,18 +91,17 @@ taskApp.controller('taskController',function($scope,$http){
     	    });
     	}
 	
-	$scope.save = function(){
+	    $scope.save = function(){
 	   
-		
-	    	var taskToSave = $scope.selectedTask
-		$http.put('/task',taskToSave)
-			.success(function (data, status, headers) {
-			    console.log('sucess');
-			    $scope.populatePanel();
-			})
-			.error(function (data, status, header, config) {
-			    console.log('error');
-			});
+		    var taskToSave = $scope.selectedTask
+		    $http.put('/task',taskToSave)
+			    .success(function (data, status, headers) {
+			        console.log('sucess');
+			        $scope.populatePanel();
+			    })
+			    .error(function (data, status, header, config) {
+			        console.log('error');
+			    });
 		}
 	
 

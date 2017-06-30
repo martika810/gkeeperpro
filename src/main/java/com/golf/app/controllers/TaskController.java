@@ -56,9 +56,9 @@ public class TaskController implements com.golf.app.controllers.Controller<TaskM
 
 	@RequestMapping(consumes = "application/json", method = RequestMethod.PUT)
 	public ResponseEntity<TaskMutable> update(@RequestBody TaskMutable obj) {
-
-		boolean taskIsValid = validEmployees(obj.getPersonAssignedIds()) && (toolRepository.read(obj.getToolAssignedId()) != null);
-
+		boolean employeeIsValid = validEmployees(obj.getPersonAssignedIds());
+		boolean toolIsValid = validTools(obj.getToolAssignedIds()) ;
+		boolean taskIsValid = employeeIsValid  &&  toolIsValid;
 		if (taskIsValid) {
 			repository.update(obj.inmutable());
 			return ResponseEntity.status(HttpStatus.OK).body(repository.read(obj.getId()).mutable());
@@ -84,6 +84,16 @@ public class TaskController implements com.golf.app.controllers.Controller<TaskM
 		boolean valid = true;
 		for (String employeeId : employeeIds) {
 			if (employeeRepository.read(employeeId) == null) {
+				return false;
+			}
+		}
+		return valid;
+
+	}
+	private boolean validTools(List<String> toolIds) {
+		boolean valid = true;
+		for (String toolId : toolIds) {
+			if (toolRepository.read(toolId) == null) {
 				return false;
 			}
 		}

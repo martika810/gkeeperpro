@@ -5,8 +5,11 @@ toolApp.controller('toolController',function($scope,$http){
 	//Esto hace una llamada a la clase TaskController
 	//Los datos de respuseta se devuelven en "response.data"
 	//Y se asignan a la variable toolList
-	$http.get("/tool")
-			.then(function(response){
+	
+	$scope.populateToolPanel = function(){
+		$http.get("/tool")
+			.then(function(response)
+			{
 				$scope.toolList = response.data
 				
 				//cuando haya un cambio en la variable "toolList", entonces se ejecuta estaa funcion
@@ -14,6 +17,11 @@ toolApp.controller('toolController',function($scope,$http){
 					 $('.collapsible').collapsible();
 				}, true);
 			});
+			
+
+    	
+		};
+	$scope.populateToolPanel();
 		
 });
 

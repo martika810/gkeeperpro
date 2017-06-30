@@ -7,21 +7,21 @@ public class TaskMutable {
 	private String title;
 	private String description;
 	private List<String> personAssignedIds;
-	private String toolAssignedId;
+	private List<String> toolAssignedIds;
 
 	public TaskMutable() {
 	}
 
-	public TaskMutable(String id, String title, String description, List<String> personAssignedIds, String toolAssignedId) {
+	public TaskMutable(String id, String title, String description, List<String> personAssignedIds, List<String> toolAssignedIds) {
 		this.id = id;
 		this.title = title;
 		this.description = description;
 		this.personAssignedIds = personAssignedIds;
-		this.toolAssignedId = toolAssignedId;
+		this.toolAssignedIds = toolAssignedIds;
 	}
 
 	public Task inmutable() {
-		return Task.of(this.getId(), this.getTitle(), this.getDescription(), this.getPersonAssignedIds(), this.getToolAssignedId());
+		return Task.of(this.getId(), this.getTitle(), this.getDescription(), this.getPersonAssignedIds(), this.getToolAssignedIds());
 	}
 
 	public String getId() {
@@ -52,15 +52,15 @@ public class TaskMutable {
 		return personAssignedIds;
 	}
 
-	public String getToolAssignedId() {
-		return toolAssignedId;
+	public List<String> getToolAssignedIds() {
+		return toolAssignedIds;
 	}
 
 	public void setPersonAssignedId(List<String> personAssignedIds) {
 		this.personAssignedIds = personAssignedIds;
 	}
-	public void setToolAssignedId(String toolAssignedId) {
-		this.toolAssignedId = toolAssignedId;
+	public void setToolAssignedId(List<String> toolAssignedIds) {
+		this.toolAssignedIds = toolAssignedIds;
 	}
 
 	@Override
@@ -71,7 +71,7 @@ public class TaskMutable {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((personAssignedIds == null) ? 0 : personAssignedIds.hashCode());
 		result = prime * result + ((title == null) ? 0 : title.hashCode());
-		result = prime * result + ((toolAssignedId == null) ? 0 : toolAssignedId.hashCode());
+		result = prime * result + ((toolAssignedIds == null) ? 0 : toolAssignedIds.hashCode());
 		return result;
 	}
 
@@ -104,10 +104,10 @@ public class TaskMutable {
 				return false;
 		} else if (!title.equals(other.title))
 			return false;
-		if (toolAssignedId == null) {
-			if (other.toolAssignedId != null)
+		if (toolAssignedIds == null) {
+			if (other.toolAssignedIds != null)
 				return false;
-		} else if (!toolAssignedId.equals(other.toolAssignedId))
+		} else if (!toolAssignedIds.equals(other.toolAssignedIds))
 			return false;
 		return true;
 	}

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.springframework.org/schema/mvc">
 <head>
-    <title>Page</title>
+    <title>GKeeper</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css"></link>
     <link rel="stylesheet" th:href="@{/css/main.css}" ></link>
@@ -83,12 +83,17 @@
                                 </span>
                                 
                             </div>
-                            <div class="input-field col s4">
-                               <select id="task_tool" ng-model="task.toolAssignedId" class="browser-default">
+                            <div id="task_tool" class="input-field col s4">
+                               <select id="tool_dropdown" ng-change="assignTool()" ng-model="selectedTool" class="browser-default">
                                     <option value="" class="disabled selected">Herramienta</option>
                                    <option ng-repeat="tool in toolList" value="{{tool.id}}">{{tool.name}}</option>
-                                    
                                 </select>
+                                <span ng-repeat="toolId in task.toolAssignedIds" 
+                                     value="{{toolId}}" class="chip">
+                                    {{ toolMap[toolId].name }}
+                                    <i ng-click="unassignTool(toolId)" class="close material-icons">close</i>
+                                </span>
+                                
                             </div>
                        </div> 
      				   <div class="row">

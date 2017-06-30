@@ -38,10 +38,10 @@ taskApp.controller('taskController',function($scope,$http){
     	    .then(function(response){
     		    $scope.taskList = response.data
 			
-		        //cuando haya un cambio en la variable "taskList", entonces se ejecuta estaa funcion
-        		$scope.$watch('taskList', function() {
-		    $('.collapsible').collapsible();
-		}, true);
+		    //cuando haya un cambio en la variable "taskList", entonces se ejecuta estaa funcion
+        	    $scope.$watch('taskList', function() {
+        		$('.collapsible').collapsible();
+        	    }, true);
     	    });
     	    $http.get("/employee")
     	        .then(function(response){

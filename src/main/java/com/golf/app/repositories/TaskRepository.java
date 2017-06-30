@@ -6,11 +6,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.golf.app.repositories.collection.TaskEmployeeMap;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import com.golf.app.domain.Task;
+import com.golf.app.repositories.collection.TaskEmployeeMap;
 
 @Profile("stubbed")
 @Component("TaskRepository")
@@ -48,8 +48,8 @@ public class TaskRepository implements Repository<String, Task> {
 		return dataSource.get(key);
 	}
 
-	public Map<String,List<String>> readGroupByEmployee(){
-		Map<String,Task> taskMap = readAll();
+	public Map<String, List<String>> readGroupByEmployee() {
+		Map<String, Task> taskMap = readAll();
 		return TaskEmployeeMap.groupByEmployee(taskMap);
 	}
 
@@ -69,7 +69,7 @@ public class TaskRepository implements Repository<String, Task> {
 		tasks.add(Task.of("1", "Task1", "Description task1", Arrays.asList("52", "53"), Arrays.asList()));
 		tasks.add(Task.of("2", "Task2", "Description task2", Arrays.asList("52", "53"), Arrays.asList()));
 		tasks.add(Task.of("3", "Task3", "Description task3", Arrays.asList("52", "53"), Arrays.asList()));
-		tasks.add(Task.of("4", "Task4", "Description task4", Arrays.asList(), Arrays.asList("1")));
+		tasks.add(Task.of("4", "Task4", "Description task4", Arrays.asList("52"), Arrays.asList("1")));
 		update(tasks);
 	}
 }

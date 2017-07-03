@@ -82,7 +82,7 @@
                 <div class="collapsible-header"><i class="material-icons">place</i>{{employee.name + " " + employee.surname}}</div>
 
                 <div  class="collapsible-body">
-                    <ul ng-repeat="task in taskGroupByEmployeeMap[employee.id])" class="collapsible" data-collapsible="accordion">
+                    <ul ng-repeat="task in taskGroupByEmployeeMap[employee.id]" class="collapsible" data-collapsible="accordion">
                         <li class="collection-item">
                             <div class="collapsible-header"><i class="material-icons">place</i>{{task.title}}</div>
                             <div  class="collapsible-body" ng-include="'/task_container'">

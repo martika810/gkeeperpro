@@ -1,9 +1,10 @@
 console.log("Hello employee-controller");
 var employeeApp = angular.module('employeeApp',[]);
-employeeApp.factory("employeeService",['$rootScope','$http','$q',function($rootScope,$http,$q){
+
+employeeApp.controller('employeeController',['$scope','$http','$q',function($scope,$http,$q){
     
-    function loadTaskForAnEmployee(taskGroupByEmployeeMap,taskMap){
-	var taskByEmployee = {};
+    	$scope.loadTaskForAnEmployee = function(taskGroupByEmployeeMap,taskMap){
+    	    var taskByEmployee = {};
 	    for (var employeeId in taskGroupByEmployeeMap ) {
 		 var taskList = [];
 		 taskGroupByEmployeeMap[employeeId].forEach(function(entry){
@@ -13,53 +14,34 @@ employeeApp.factory("employeeService",['$rootScope','$http','$q',function($rootS
 		 taskByEmployee[employeeId]=taskList;
 	    }
 	    return taskByEmployee;
-    }
-    function loadEmployee(){
-	var employeeResponse = {};
-	$http.get("/employee").then(function(response){
-	    $rootScope.employeeMap= response.data;
-	});
+    	}
 	
-		
-    }
-    return{
-	loadData:function(){
-	    var taskGroupByEmployeeMap = {};
-	    //var employeeRequest = $http.get("/employee");
-	    var taskGroupByEmployeeRequest = $http.get("task/by_employee");
-	    //var toolRequest = $http.get("/tool");
-	    var taskRequest = $http.get("/task");
+       $scope.loadData = function(){
 	    
-	    $q.all([taskRequest,taskGroupByEmployeeRequest])
+	    var employeeRequest = $http.get("/employee");
+	    var taskGroupByEmployeeRequest = $http.get("task/by_employee");
+	    var toolRequest = $http.get("/tool");
+	    var taskRequest = $http.get("/task");
+	    //NOTA: el $q es para ke la parte del then se ejecute cuando 
+	    //se hayan recibido la respuesta a todas las requests que hay arriba
+	    $q.all([taskRequest,taskGroupByEmployeeRequest,employeeRequest,toolRequest])
 	    	.then(function(response){
 	    	    $('.collapsible').collapsible();
-	    	    var taskMap = response[0].data;
-	    	   // var employeeMap = response[1].data;
-	    	   // taskGroupByEmployeeMap = response[1].data;
-	    	   // var toolMap = response[3].data;
-	    	  $rootScope.taskGroupByEmployeeMap=loadTaskForAnEmployee(response[1].data,taskMap);
+	    	    $scope.taskMap = response[0].data;
+	    	    $scope.employeeMap = response[2].data;
+	    	    var taskGroupByEmployeeMap = response[1].data;
+	    	    $scope.taskGroupByEmployeeMap=$scope.loadTaskForAnEmployee(taskGroupByEmployeeMap,$scope.taskMap);
+	    	    $scope.toolList = response[3].data;
+	    	 
 	    	   
 	    	});
 	    
-	    
-	},
-	loadEmployee:function(){
-	    loadEmployee();
-	}
-    }
-}]);
-
-employeeApp.controller('employeeController',['$scope','employeeService',function($scope,employeeService){
-	
-	//Esto hace una llamada a la clase TaskController
-	//Los datos de respuseta se devuelven en "response.data"
-	//Y se asignan a la variable employeeList
-    
+       }
        $scope.save = function(){
 	    console.log("Click save");
        }
-       employeeService.loadEmployee();
-       employeeService.loadData();
+       
+       $scope.loadData();
        
 	
 		

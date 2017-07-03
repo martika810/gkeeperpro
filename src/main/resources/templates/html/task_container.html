@@ -15,7 +15,7 @@
                             <div id="task_employee" class="input-field col s4">
                                <select id="employee_dropdown" ng-change="assignEmployee()" ng-model="selectedEmployee" class="browser-default" >
                                     <option value="" class="disabled selected">Asignar</option>
-                                    <option ng-repeat="employee in employeeList" value="{{employee.id}}">
+                                    <option ng-repeat="employee in employeeMap" value="{{employee.id}}">
                                         {{employee.name}}
                                     </option>
                                 </select>

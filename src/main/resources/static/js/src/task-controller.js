@@ -45,7 +45,6 @@ taskApp.controller('taskController',function($scope,$http){
     	    });
     	    $http.get("/employee")
     	        .then(function(response){
-    		        //$scope.employeeList = response.data
     		        $scope.employeeMap = response.data
     	        });
     	    $http.get("/tool")

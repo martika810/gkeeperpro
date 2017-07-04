@@ -7,6 +7,7 @@ toolApp.controller('toolController',function($scope,$http){
 	//Y se asignan a la variable toolList
 	
 	$scope.populateToolPanel = function(){
+	    
 		$http.get("/tool")
 			.then(function(response)
 			{

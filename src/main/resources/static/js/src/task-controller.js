@@ -30,6 +30,11 @@ taskApp.controller('taskController',function($scope,$http){
 	   $scope.selectedTask = selectedTask;
 	}
 	
+	$scope.activeModal = function(){
+	 // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+		$('.modal').modal();
+	}
+	
 	//Esto hace una llamada a la clase TaskController
 	//Los datos de respuseta se devuelven en "response.data"
 	//Y se asignan a la variable taskList
@@ -41,6 +46,8 @@ taskApp.controller('taskController',function($scope,$http){
 		    //cuando haya un cambio en la variable "taskList", entonces se ejecuta estaa funcion
         	    $scope.$watch('taskList', function() {
         		$('.collapsible').collapsible();
+        		
+        		 
         	    }, true);
     	    });
     	    $http.get("/employee")

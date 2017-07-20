@@ -38,8 +38,13 @@ textarea.materialize-textarea{
 	padding:5px !important;
 }
 
-.collapsible-body .row{
+.collapsible-body .row,#add_task_modal .row{
     margin-bottom: 0px !important;
+}
+
+.action-panel .btn-floating{
+	float:right;
+	margin:10px;
 }
 
 

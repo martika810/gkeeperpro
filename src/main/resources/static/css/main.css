@@ -47,4 +47,19 @@ textarea.materialize-textarea{
 	margin:10px;
 }
 
+#employeePanel ul.collapsible .collapsible-body{
+	padding: 0px !important;
+}
 
+#employeePanel ul.collapsible div.collapsible-body{
+	margin-bottom:20px !important;
+	
+}
+#employeePanel ul.collapsible{
+	margin: 0px !important;
+	border-right:none !important;
+}
+
+#employeePanel div.collapsible-body form{
+	padding: 20px !important;
+}

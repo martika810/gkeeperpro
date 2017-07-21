@@ -1,0 +1,47 @@
+<div class="modal-content">
+    <h4>Nueva Tarea </h4>
+    <p>Inserta los detalles de la tarea a continuacion</p>
+    <div class="row">
+        <div class="input-field col s9">
+            <input id="task_title" type="text" class="validate" ></input>
+            <label for="task_title">Titulo</label>
+        </div>
+    </div>  
+    <div class="row">
+        <div id="task_employee" class="input-field col s4">
+            <select id="employee_dropdown" ng-change="assignEmployee()" class="browser-default" >
+                <option value="" class="disabled selected">Selecciona Empleado</option>
+                <option ng-repeat="employee in employeeMap" value="{{employee.id}}">
+                    {{employee.name}}
+                </option>
+            </select>
+            <span ng-repeat="employeeId in task.personAssignedIds" 
+                    value="{{employeeId}}" class="chip">
+                    {{ employeeMap[employeeId].name + " " + employeeMap[employeeId].surname }}
+                    <i ng-click="unassignEmployee(employeeId)" class="close material-icons">close</i>
+            </span>
+                                
+        </div>
+        <div id="task_tool" class="input-field col s4">
+            <select id="tool_dropdown" ng-change="assignTool()" class="browser-default">
+                <option value="" class="disabled selected">Selecciona Herramienta</option>
+                <option ng-repeat="tool in toolList" value="{{tool.id}}">{{tool.name}}</option>
+            </select>
+            <span ng-repeat="toolId in task.toolAssignedIds" 
+                value="{{toolId}}" class="chip">
+                {{ toolMap[toolId].name }}
+                <i ng-click="unassignTool(toolId)" class="close material-icons">close</i>
+            </span>
+         </div>
+    </div> 
+    <div class="row">
+        <div class="input-field col s11">
+            <textarea id="task_description" class="materialize-textarea"></textarea>
+            <label for="textarea1">Introduzca detalles de la tarea</label>
+        </div>
+    </div>  
+</div>
+<div class="modal-footer">
+    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Save</a>
+</div>

@@ -38,8 +38,28 @@ textarea.materialize-textarea{
 	padding:5px !important;
 }
 
-.collapsible-body .row{
+.collapsible-body .row,#add_task_modal .row{
     margin-bottom: 0px !important;
 }
 
+.action-panel .btn-floating{
+	float:right;
+	margin:10px;
+}
 
+#employeePanel ul.collapsible .collapsible-body{
+	padding: 0px !important;
+}
+
+#employeePanel ul.collapsible div.collapsible-body{
+	margin-bottom:20px !important;
+	
+}
+#employeePanel ul.collapsible{
+	margin: 0px !important;
+	border-right:none !important;
+}
+
+#employeePanel div.collapsible-body form{
+	padding: 20px !important;
+}

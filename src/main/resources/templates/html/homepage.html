@@ -51,6 +51,12 @@
      		<img src="img/blocked.png" alt="Bloqueada"/>
     	 	Bloqueada1
   		</div>
+        <a class="btn-floating btn-large waves-effect waves-light green" ng-click="activeModal()" href="#add_task_modal">
+            <i class="material-icons">add</i>
+        </a>
+        <div id="add_task_modal" class="modal" ng-include="'/task_add_container'">
+            
+        </div>
   	</div>
   	<div>
 		<ul ng-repeat="task in taskList" class="collapsible" data-collapsible="accordion">

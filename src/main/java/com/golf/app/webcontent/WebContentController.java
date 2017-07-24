@@ -16,7 +16,7 @@ public class WebContentController {
 		return "html/task_container";
 	}
 
-	@RequestMapping("/task_add_container")
+	@RequestMapping("/task_add_new")
 	public String taskAddContainer() {
 		return "html/task_add_new";
 	}

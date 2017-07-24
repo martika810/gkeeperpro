@@ -35,6 +35,29 @@ taskApp.controller('taskController',function($scope,$http){
 		$('.modal').modal();
 	}
 	
+	$scope.initializeNewTask = function(){
+	    $scope.newTask = new Object();
+	}
+	
+	$scope.createNewTask = function(){
+	    
+//	    private final String title;
+//		private final String description;
+//		private final List<String> personAssignedIds;
+//		private final List<String> toolAssignedIds;
+	    task['title'] = $('#newTaskContainer #task_title').val();
+	    task['description'] = $('#newTaskContainer ##task_description').val();
+	    $http.post('/task',task)
+	    .success(function (data, status, headers) {
+	        console.log('sucess');
+	        $scope.populatePanel();
+	        $('#newTaskContainer').hide();
+	    })
+	    .error(function (data, status, header, config) {
+	        console.log('error');
+	    });
+	    
+	}
 	//Esto hace una llamada a la clase TaskController
 	//Los datos de respuseta se devuelven en "response.data"
 	//Y se asignan a la variable taskList
@@ -46,8 +69,7 @@ taskApp.controller('taskController',function($scope,$http){
 		    //cuando haya un cambio en la variable "taskList", entonces se ejecuta estaa funcion
         	    $scope.$watch('taskList', function() {
         		$('.collapsible').collapsible();
-        		
-        		 
+       		 
         	    }, true);
     	    });
     	    $http.get("/employee")
@@ -62,37 +84,37 @@ taskApp.controller('taskController',function($scope,$http){
     	    }
     	$scope.populatePanel();
 	
-    	$scope.assignEmployee = function(){
+    	$scope.assignEmployee = function(task){
     	    var selectedEmployee = $('.collection-item.active #employee_dropdown').find(':selected').val();
-    	    var isAlreadyAssigned = ($.inArray(selectedEmployee, $scope.selectedTask.personAssignedIds)!==-1);
+    	    var isAlreadyAssigned = ($.inArray(selectedEmployee, task.personAssignedIds)!==-1);
     	    var isEmptyEmployee = selectedEmployee == "";
     	    if(!isAlreadyAssigned && !isEmptyEmployee){
-    	       $scope.selectedTask.personAssignedIds.push(selectedEmployee);
+    	       task.personAssignedIds.push(selectedEmployee);
     		
     	    }
-    	    //TODO seleccionar la opcion asignar
+    	    
     	}
 
-    	$scope.unassignEmployee = function(employeeId){
+    	$scope.unassignEmployee = function(task,employeeId){
     	    console.log("Unassigned")
-    	    $scope.selectedTask.personAssignedIds = $.grep( $scope.selectedTask.personAssignedIds, function(id){ 
+    	    task.personAssignedIds = $.grep( task.personAssignedIds, function(id){ 
     		 return id != employeeId;
     	    });
     	}
 
-    	$scope.assignTool = function(){
+    	$scope.assignTool = function(task){
     	    var selectedTool = $('.collection-item.active #tool_dropdown').find(':selected').val();
-    	    var isAlreadyAssigned = ($.inArray(selectedTool, $scope.selectedTask.toolAssignedIds)!==-1);
+    	    var isAlreadyAssigned = ($.inArray(selectedTool, task.toolAssignedIds)!==-1);
     	    var isEmptyTool = selectedTool == "";
     	    if(!isAlreadyAssigned && !isEmptyTool){
-    		    $scope.selectedTask.toolAssignedIds.push(selectedTool);
+    		   task.toolAssignedIds.push(selectedTool);
     		
     	    }
     	    //TODO seleccionar la opcion asignar
     	}
-    	$scope.unassignTool = function(toolId){
+    	$scope.unassignTool = function(task,toolId){
     	    console.log("Unassigned")
-    	    $scope.selectedTask.toolAssignedIds = $.grep( $scope.selectedTask.toolAssignedIds, function(id){ 
+    	    $scope.selectedTask.toolAssignedIds = $.grep( task.toolAssignedIds, function(id){ 
     		 return id != toolId;
     	    });
     	}
@@ -115,4 +137,5 @@ taskApp.controller('taskController',function($scope,$http){
 
 angular.element(document).ready(function() {
 	angular.bootstrap(document.getElementById("taskPanel"), ['taskApp']);
+	angular.bootstrap(document.getElementById("newTaskPanel"), ['taskApp']);
 });

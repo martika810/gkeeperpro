@@ -13,7 +13,7 @@
                        </div>
                        <div class="row">
                             <div id="task_employee" class="input-field col s4">
-                               <select id="employee_dropdown" ng-change="assignEmployee()" ng-model="selectedEmployee" class="browser-default" >
+                               <select id="employee_dropdown" ng-change="assignEmployee(selectedTask)" ng-model="selectedEmployee" class="browser-default" >
                                     <option value="" class="disabled selected">Asignar</option>
                                     <option ng-repeat="employee in employeeMap" value="{{employee.id}}">
                                         {{employee.name}}
@@ -22,19 +22,19 @@
                                 <span ng-repeat="employeeId in task.personAssignedIds" 
                                      value="{{employeeId}}" class="chip">
                                     {{ employeeMap[employeeId].name + " " + employeeMap[employeeId].surname }}
-                                    <i ng-click="unassignEmployee(employeeId)" class="close material-icons">close</i>
+                                    <i ng-click="unassignEmployee(selectedTask,employeeId)" class="close material-icons">close</i>
                                 </span>
                                 
                             </div>
                             <div id="task_tool" class="input-field col s4">
-                               <select id="tool_dropdown" ng-change="assignTool()" ng-model="selectedTool" class="browser-default">
+                               <select id="tool_dropdown" ng-change="assignTool(selectedTask)" ng-model="selectedTool" class="browser-default">
                                     <option value="" class="disabled selected">Herramienta</option>
                                    <option ng-repeat="tool in toolList" value="{{tool.id}}">{{tool.name}}</option>
                                 </select>
                                 <span ng-repeat="toolId in task.toolAssignedIds" 
                                      value="{{toolId}}" class="chip">
                                     {{ toolMap[toolId].name }}
-                                    <i ng-click="unassignTool(toolId)" class="close material-icons">close</i>
+                                    <i ng-click="unassignTool(selectedTask,toolId)" class="close material-icons">close</i>
                                 </span>
                                 
                             </div>

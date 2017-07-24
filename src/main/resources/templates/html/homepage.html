@@ -54,7 +54,7 @@
         <a class="btn-floating btn-large waves-effect waves-light green" ng-click="activeModal()" href="#add_task_modal">
             <i class="material-icons">add</i>
         </a>
-        <div id="add_task_modal" class="modal" ng-include="'/task_add_container'">
+        <div id="add_task_modal" class="modal" ng-include="'/task_add_new'" ng-model="selectedTask">
             
         </div>
   	</div>
@@ -65,7 +65,7 @@
                     <i class="material-icons">place</i>
                     {{task.title}}
                 </div>
-                <div class="collapsible-body" ng-include="'/task_container'">
+                <div class="collapsible-body" ng-include="'/task_container'" >
                 </div>
             </li>
 		</ul>

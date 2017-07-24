@@ -1,4 +1,4 @@
-<div class="modal-content">
+<div id="newTaskPanel" class="modal-content">
     <h4>Nueva Tarea </h4>
     <p>Inserta los detalles de la tarea a continuacion</p>
     <div class="row">
@@ -9,7 +9,7 @@
     </div>  
     <div class="row">
         <div id="task_employee" class="input-field col s4">
-            <select id="employee_dropdown" ng-change="assignEmployee()" class="browser-default" >
+            <select id="employee_dropdown" ng-change="assignEmployee(newTask)" class="browser-default" >
                 <option value="" class="disabled selected">Selecciona Empleado</option>
                 <option ng-repeat="employee in employeeMap" value="{{employee.id}}">
                     {{employee.name}}
@@ -18,19 +18,19 @@
             <span ng-repeat="employeeId in task.personAssignedIds" 
                     value="{{employeeId}}" class="chip">
                     {{ employeeMap[employeeId].name + " " + employeeMap[employeeId].surname }}
-                    <i ng-click="unassignEmployee(employeeId)" class="close material-icons">close</i>
+                    <i ng-click="unassignEmployee(newTask,employeeId)" class="close material-icons">close</i>
             </span>
                                 
         </div>
         <div id="task_tool" class="input-field col s4">
-            <select id="tool_dropdown" ng-change="assignTool()" class="browser-default">
+            <select id="tool_dropdown" ng-change="assignTool(newTask)" class="browser-default">
                 <option value="" class="disabled selected">Selecciona Herramienta</option>
                 <option ng-repeat="tool in toolList" value="{{tool.id}}">{{tool.name}}</option>
             </select>
             <span ng-repeat="toolId in task.toolAssignedIds" 
                 value="{{toolId}}" class="chip">
                 {{ toolMap[toolId].name }}
-                <i ng-click="unassignTool(toolId)" class="close material-icons">close</i>
+                <i ng-click="unassignTool(newTask,toolId)" class="close material-icons">close</i>
             </span>
          </div>
     </div> 
@@ -43,5 +43,5 @@
 </div>
 <div class="modal-footer">
     <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
-    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Save</a>
+    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat" ng-click="createNewTask()">Save</a>
 </div>

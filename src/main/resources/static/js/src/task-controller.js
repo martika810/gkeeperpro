@@ -35,29 +35,7 @@ taskApp.controller('taskController',function($scope,$http){
 		$('.modal').modal();
 	}
 	
-	$scope.initializeNewTask = function(){
-	    $scope.newTask = new Object();
-	}
 	
-	$scope.createNewTask = function(){
-	    
-//	    private final String title;
-//		private final String description;
-//		private final List<String> personAssignedIds;
-//		private final List<String> toolAssignedIds;
-	    task['title'] = $('#newTaskContainer #task_title').val();
-	    task['description'] = $('#newTaskContainer ##task_description').val();
-	    $http.post('/task',task)
-	    .success(function (data, status, headers) {
-	        console.log('sucess');
-	        $scope.populatePanel();
-	        $('#newTaskContainer').hide();
-	    })
-	    .error(function (data, status, header, config) {
-	        console.log('error');
-	    });
-	    
-	}
 	//Esto hace una llamada a la clase TaskController
 	//Los datos de respuseta se devuelven en "response.data"
 	//Y se asignan a la variable taskList
@@ -83,6 +61,7 @@ taskApp.controller('taskController',function($scope,$http){
  	            });
     	    }
     	$scope.populatePanel();
+    	//$scope.initializeNewTask();
 	
     	$scope.assignEmployee = function(task){
     	    var selectedEmployee = $('.collection-item.active #employee_dropdown').find(':selected').val();
@@ -137,5 +116,5 @@ taskApp.controller('taskController',function($scope,$http){
 
 angular.element(document).ready(function() {
 	angular.bootstrap(document.getElementById("taskPanel"), ['taskApp']);
-	angular.bootstrap(document.getElementById("newTaskPanel"), ['taskApp']);
+	//angular.bootstrap(document.getElementById("newTaskPanel"), ['taskApp']);
 });

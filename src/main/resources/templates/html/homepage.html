@@ -14,6 +14,7 @@
 	 <script type="text/javascript" th:src="@{/js/src/tool-controller.js}" />
 	 <script type="text/javascript" th:src="@{/js/src/employee-controller.js}" />
     <script type="text/javascript" th:src="@{/js/src/task-controller.js}" />
+     <script type="text/javascript" th:src="@{/js/src/new-task-controller.js}" />
    	<script type="text/javascript" th:src="@{/js/src/tab-controller.js}" />
 </head>
 <body >
@@ -54,7 +55,7 @@
         <a class="btn-floating btn-large waves-effect waves-light green" ng-click="activeModal()" href="#add_task_modal">
             <i class="material-icons">add</i>
         </a>
-        <div id="add_task_modal" class="modal" ng-include="'/task_add_new'" ng-model="selectedTask">
+        <div id="newTaskPanel" class="modal" ng-include="'/task_add_new'" >
             
         </div>
   	</div>

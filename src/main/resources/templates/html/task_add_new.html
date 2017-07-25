@@ -1,4 +1,4 @@
-<div id="newTaskPanel" class="modal-content">
+<div class="modal-content">
     <h4>Nueva Tarea </h4>
     <p>Inserta los detalles de la tarea a continuacion</p>
     <div class="row">
@@ -9,7 +9,7 @@
     </div>  
     <div class="row">
         <div id="task_employee" class="input-field col s4">
-            <select id="employee_dropdown" ng-change="assignEmployee(newTask)" class="browser-default" >
+            <select id="employee_dropdown" class="browser-default" >
                 <option value="" class="disabled selected">Selecciona Empleado</option>
                 <option ng-repeat="employee in employeeMap" value="{{employee.id}}">
                     {{employee.name}}
@@ -18,7 +18,7 @@
             <span ng-repeat="employeeId in task.personAssignedIds" 
                     value="{{employeeId}}" class="chip">
                     {{ employeeMap[employeeId].name + " " + employeeMap[employeeId].surname }}
-                    <i ng-click="unassignEmployee(newTask,employeeId)" class="close material-icons">close</i>
+                    <i  class="close material-icons">close</i>
             </span>
                                 
         </div>
